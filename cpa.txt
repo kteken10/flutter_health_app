@@ -1,0 +1,33 @@
+Pour ton application mobile de prédiction de maladies, voici une suggestion de différents onglets (tabs) que tu pourrais inclure dans le BottomTab pour une navigation efficace et intuitive :
+
+1. Accueil (Home)
+Icône: Une maison ou un stéthoscope
+Description: L'écran d'accueil présente un résumé des fonctionnalités principales de l'application et des informations importantes pour l'utilisateur. Cela pourrait inclure des notifications récentes, des rappels de suivi, et un aperçu des patients récemment consultés.
+2. Nouveau Patient / Consultation (New Patient / Consultation)
+Icône: Un plus (+) ou une personne avec un signe médical
+Description: Cet onglet permet aux médecins de commencer une nouvelle consultation en saisissant les données cliniques d'un nouveau patient. Les médecins peuvent entrer les symptômes, les résultats des tests, et l'historique médical ici.
+
+
+3. Historique et Suivi (History & Monitoring)
+Icône: Un dossier médical ou un graphique de progression
+Description: Cet onglet affiche l'historique des prédictions et des consultations pour chaque patient. Les médecins peuvent suivre l'évolution de l'état de santé des patients au fil du temps et consulter les prédictions passées.
+
+
+4. Prédictions (Predictions)
+Icône: Un graphique avec des courbes ou un cerveau
+Description: Cet onglet affiche toutes les prédictions faites par l'application. Les médecins peuvent consulter les détails des prédictions, voir les facteurs de risque associés, et les recommandations faites par le système.
+
+
+5. Paramètres (Settings)
+Icône: Un engrenage ou une clé à molette
+Description: Cet onglet permet aux utilisateurs de configurer les paramètres de l'application, y compris les préférences de notification, la gestion des comptes utilisateur, et les options de sécurité.
+
+
+6. Aide et Support (Help & Support)
+Icône: Un point d'interrogation ou une bulle de dialogue
+Description: Cet onglet offre de l'aide et du support aux utilisateurs. Il peut inclure une section FAQ, des tutoriels, et un moyen de contacter le support technique.
+
+
+7. Profil (Profile)
+Icône: Un utilisateur ou une silhouette de personne
+Description: Cet onglet permet aux médecins de gérer leurs informations de profil et de voir leur historique d'utilisation de l'application.
