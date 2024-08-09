@@ -106,6 +106,7 @@ class _BottomNavState extends State<BottomNav> {
       bottomSheet: const Padding(
         padding: EdgeInsets.only(bottom: 110.0),
         child: SizedBox.shrink(),
+        
       ),
     );
   }
