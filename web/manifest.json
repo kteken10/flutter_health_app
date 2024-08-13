@@ -1,6 +1,6 @@
 {
-    "name": "flutter_base_app",
-    "short_name": "flutter_base_app",
+    "name": "mediscanai",
+    "short_name": "mediscanai",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

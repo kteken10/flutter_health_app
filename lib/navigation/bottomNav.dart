@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_bar/bottom_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_base_app/screens/home.dart';
-import 'package:flutter_base_app/screens/history_tracking.dart';
-import 'package:flutter_base_app/screens/prediction.dart';
-import 'package:flutter_base_app/screens/settings_screen.dart';
+import 'package:mediscanai/screens/home.dart';
+import 'package:mediscanai/screens/history_tracking.dart';
+import 'package:mediscanai/screens/prediction.dart';
+import 'package:mediscanai/screens/settings_screen.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});

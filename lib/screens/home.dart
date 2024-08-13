@@ -1,4 +1,3 @@
-// lib/home.dart
 import 'package:flutter/material.dart';
 // Importer la liste des patients
 import '../data/patient.dart';
@@ -45,6 +44,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // Pour éviter le problème de BottomOverflowed
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         title: CircleAvatar(
@@ -72,11 +72,10 @@ class _FirstScreenState extends State<FirstScreen> {
         ],
         elevation: 0,
       ),
-      body: Container(
-        color: const Color.fromARGB(255, 241, 245, 254),
-        width: double.infinity,
-        height: double.infinity,
-        child: Padding(
+      body: SingleChildScrollView(
+        child: Container(
+          color: const Color.fromARGB(255, 241, 245, 254),
+          width: double.infinity,
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +148,6 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ],
               ),
-            
               SizedBox(
                 height: 150, // Hauteur des cartes, ajustez si nécessaire
                 child: SingleChildScrollView(
@@ -170,7 +168,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ),
               ),
-              // Vos autres éléments qui doivent rester visibles en dessous
+              // Vos autres éléments ici
             ],
           ),
         ),

@@ -1,4 +1,4 @@
-# flutter_base_app
+# mediscanai
 
 A new Flutter project.
 
