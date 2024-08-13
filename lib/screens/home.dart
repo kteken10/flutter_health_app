@@ -45,6 +45,7 @@ class _FirstScreenState extends State<FirstScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true, // Pour éviter le problème de BottomOverflowed
+      backgroundColor: const Color.fromARGB(255, 241, 245, 254), // Appliquer la couleur à tout l'arrière-plan
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         title: CircleAvatar(
@@ -74,7 +75,7 @@ class _FirstScreenState extends State<FirstScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: const Color.fromARGB(255, 241, 245, 254),
+          color: const Color.fromARGB(255, 241, 245, 254), // Assurez-vous que le Container conserve également la couleur
           width: double.infinity,
           padding: const EdgeInsets.all(16.0),
           child: Column(
