@@ -18,7 +18,7 @@ class PatientCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 111, // Hauteur de la carte
+      height: 120, // Hauteur de la carte
       width: double.infinity,
       child: Card(
         color: Colors.white,

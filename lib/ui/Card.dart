@@ -21,7 +21,7 @@ class CustomCard extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(0),
                     child: Text(
-                      'Prédiction de maladies à l\'aide de données cliniques',
+                      'predict a disease using the patient\'s clinical data.',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,

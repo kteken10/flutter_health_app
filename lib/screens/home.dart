@@ -119,7 +119,16 @@ class _FirstScreenState extends State<FirstScreen> {
                             child: TextField(
                               controller: _searchController,
                               decoration: InputDecoration(
-                                hintText: 'Rechercher...',
+                                 focusedBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)), // Bordures arrondies
+                      borderSide: BorderSide(color: Color.fromARGB(255, 118, 76, 243)), // Bordure bleue quand le champ est en focus
+                    ),
+                  
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)), // Bordures arrondies
+                      borderSide: BorderSide(color: Colors.white), // Bordure blanche quand le champ n'est pas en focus
+                    ),
+                                hintText: '...',
                                 fillColor: Colors.white,
                                 filled: true,
                                 border: OutlineInputBorder(

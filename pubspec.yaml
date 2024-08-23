@@ -47,6 +47,11 @@ flutter:
     - assets/sigar-man.jpg
     - assets/happy-man.jpg
     - assets/wow-man.jpg
+    - assets/cardio.png
+    - assets/virus.png
+    - assets/brain.png
+
+
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
