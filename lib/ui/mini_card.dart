@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class CardWidget extends StatelessWidget {
   final String title;
   final String imagePath; // Chemin de l'image à afficher
@@ -35,6 +34,7 @@ class CardWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
+                  
                   
                   radius: 30, // Ajuste la taille du cercle
                   child: SizedBox(
