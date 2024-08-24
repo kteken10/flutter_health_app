@@ -15,7 +15,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       'imagePath': 'assets/cardio.png', // Chemin de l'image
     },
     {
-      'title': 'Metabolic',
+      'title': 'Brain',
       'imagePath': 'assets/brain.png', // Chemin de l'image
     },
     {
@@ -44,8 +44,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
             backgroundColor: Colors.white,
             radius: 22,
             child: IconButton(
-              icon: const Icon(Icons.folder,
-                  color: Color.fromARGB(255, 118, 76, 243)),
+              icon: const Icon(Icons.folder, color: Color.fromARGB(255, 132, 177, 254)),
               onPressed: () {},
             ),
           ),
@@ -83,16 +82,14 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                  contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                     borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide:
-                        BorderSide(color: Color.fromARGB(255, 118, 76, 243)),
+                    borderSide: BorderSide(color: Color.fromARGB(255, 132, 177, 254)),
                   ),
                   prefixIcon: Icon(Icons.search_rounded, color: Colors.grey),
                   hintText: '...',
@@ -123,10 +120,10 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         imagePath: _cards[index]['imagePath'], // Utiliser l'image PNG
                         onTap: () => _onCardTapped(index),
                         backgroundColor: _selectedCardIndex == index
-                            ? const Color.fromARGB(255, 118, 76, 243)
+                            ? const Color.fromARGB(255, 132, 177, 254)
                             : Colors.white, // Changer la couleur de fond
                         avatarBackgroundColor: _selectedCardIndex == index
-                            ? const Color.fromARGB(255, 118, 76, 243)
+                            ? const Color.fromARGB(255, 132, 177, 254)
                             : Colors.white, // Changer la couleur de l'avatar
                       ),
                     );
@@ -134,8 +131,25 @@ class _PredictionScreenState extends State<PredictionScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              // Visual indicator (dots)
-              // ...
+              // Ajout de l'indicateur de sélection
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(_cards.length, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: Container(
+                      width: 5.0,
+                      height: 5.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _selectedCardIndex == index
+                            ? const Color.fromARGB(255, 52, 121, 240) // Couleur du point sélectionné
+                            : const Color.fromARGB(255, 195, 215, 248), // Couleur des points non sélectionnés
+                      ),
+                    ),
+                  );
+                }),
+              ),
             ],
           ),
         ),

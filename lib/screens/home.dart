@@ -65,7 +65,8 @@ class _FirstScreenState extends State<FirstScreen> {
             backgroundColor: Colors.white,
             radius: 22,
             child: IconButton(
-              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 118, 76, 243)),
+              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 132, 177, 254)
+),
               onPressed: () {},
             ),
           ),
@@ -102,7 +103,8 @@ class _FirstScreenState extends State<FirstScreen> {
                   const Text(
                     'Patients',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 118, 76, 243),
+                      color: Color.fromARGB(255, 132, 177, 254)
+,
                       fontSize: 25,
                       fontWeight: FontWeight.normal,
                     ),
@@ -121,7 +123,8 @@ class _FirstScreenState extends State<FirstScreen> {
                               decoration: InputDecoration(
                                  focusedBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12.0)), // Bordures arrondies
-                      borderSide: BorderSide(color: Color.fromARGB(255, 118, 76, 243)), // Bordure bleue quand le champ est en focus
+                      borderSide: BorderSide(color: Color.fromARGB(255, 132, 177, 254)
+), // Bordure bleue quand le champ est en focus
                     ),
                   
                     enabledBorder: const OutlineInputBorder(
@@ -145,7 +148,8 @@ class _FirstScreenState extends State<FirstScreen> {
                     backgroundColor: Colors.white,
                     radius: 22,
                     child: IconButton(
-                      icon: const Icon(Icons.search, color: Color.fromARGB(255, 118, 76, 243)),
+                      icon: const Icon(Icons.search, color: Color.fromARGB(255, 132, 177, 254)
+),
                       onPressed: () {
                         setState(() {
                           _isSearching = !_isSearching;

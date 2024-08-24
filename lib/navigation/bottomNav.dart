@@ -61,7 +61,8 @@ class _BottomNavState extends State<BottomNav> {
                       width: 20,
                     ),
                     title: const Text('Acceuil'),
-                    activeColor: const Color.fromARGB(255, 118, 76, 243),
+                    activeColor: const Color.fromARGB(255, 132, 177, 254)
+,
                   ),
                   BottomBarItem(
                     icon: SvgPicture.asset(
@@ -70,7 +71,8 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Prédictions'),
-                    activeColor: const Color.fromARGB(255, 118, 76, 243),
+                    activeColor: const Color.fromARGB(255, 132, 177, 254)
+,
                   ),
                   BottomBarItem(
                     icon: SvgPicture.asset(
@@ -79,12 +81,14 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Historique'),
-                    activeColor: const Color.fromARGB(255, 118, 76, 243),
+                    activeColor: const Color.fromARGB(255, 132, 177, 254)
+,
                   ),
                   const BottomBarItem(
                     icon: Icon(Icons.settings),
                     title: Text('Settings'),
-                    activeColor: Color.fromARGB(255, 118, 76, 243),
+                    activeColor: Color.fromARGB(255, 132, 177, 254)
+,
                   ),
                 ],
               ),
@@ -94,7 +98,8 @@ class _BottomNavState extends State<BottomNav> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor:  const Color.fromARGB(255, 118, 76, 243),
+        backgroundColor:  const Color.fromARGB(255, 132, 177, 254)
+,
         foregroundColor: Colors.white,
         elevation: 6,
         shape: const RoundedRectangleBorder(
