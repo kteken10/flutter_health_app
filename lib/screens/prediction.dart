@@ -150,6 +150,16 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   );
                 }),
               ),
+              const SizedBox(height: 10),
+              // Ajout du texte "Disease"
+              const Text(
+                'Disease',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4A4A4A),
+                ),
+              ),
             ],
           ),
         ),
