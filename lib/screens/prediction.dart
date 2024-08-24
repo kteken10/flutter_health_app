@@ -5,7 +5,6 @@ class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _PredictionScreenState createState() => _PredictionScreenState();
 }
 
@@ -126,6 +125,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
                         backgroundColor: _selectedCardIndex == index
                             ? const Color.fromARGB(255, 118, 76, 243)
                             : Colors.white, // Changer la couleur de fond
+                        avatarBackgroundColor: _selectedCardIndex == index
+                            ? const Color.fromARGB(255, 118, 76, 243)
+                            : Colors.white, // Changer la couleur de l'avatar
                       ),
                     );
                   },
