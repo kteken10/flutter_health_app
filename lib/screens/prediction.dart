@@ -5,6 +5,7 @@ class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _PredictionScreenState createState() => _PredictionScreenState();
 }
 

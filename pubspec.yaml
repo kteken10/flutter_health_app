@@ -13,6 +13,8 @@ dependencies:
   bottom_bar: ^2.0.3  
   flutter_svg: ^1.0.0
   expansion_tile_card: ^3.0.0
+  shared_preferences: ^2.0.8
+  intl_phone_number_input: ^0.7.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
