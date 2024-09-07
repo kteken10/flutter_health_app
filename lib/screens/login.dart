@@ -68,8 +68,16 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment:  CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+            // Ajout de l'image
+            Image.asset(
+              'assets/mediAiSchool.png', // Chemin vers ton image
+              height: 300, // Hauteur de l'image
+              width: 300, // Largeur de l'image
+            ),
+            const SizedBox(height: 40),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -90,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     initialValue: number,
                     inputDecoration: const InputDecoration(
                       labelText: 'Phone',
-                        labelStyle:  TextStyle(color: Color.fromARGB(255, 132, 177, 254)),
+                      labelStyle: TextStyle(color: Color.fromARGB(255, 132, 177, 254)),
                       border: InputBorder.none, // Supprime la bordure par défaut
                       suffixIcon: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -170,14 +178,36 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(30.0), // Garder les bordures circulaires
                     ),
                   ),
-                  child: const Text('Login',style: TextStyle(color: Colors.white),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
+              // Ajout du texte après le bouton
+              const SizedBox(height: 16), // Espace entre le bouton et le texte
+              const Text(
+                "forgot Password ?",
+                style: TextStyle(
+                  color: Color(0xFF517AC7),
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               
+                  
+              
+              
+              
+             
+             
             ],
+          
           ),
+          
         ),
+        
+        
       ),
     );
   }
