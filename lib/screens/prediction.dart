@@ -160,14 +160,38 @@ class _PredictionScreenState extends State<PredictionScreen> {
               ),
               const SizedBox(height: 10),
               // Ajout du texte "Disease"
-              const Text(
-                'Disease',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF4A4A4A),
-                ),
-              ),
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    const Text(
+      'Disease',
+      style: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF4A4A4A),
+      ),
+    ),
+    Container(
+      width: 90,  // Largeur plus grande que la hauteur
+      height: 30, // Hauteur plus petite
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 216, 227, 247), // Couleur de fond
+        borderRadius: BorderRadius.circular(20), // Bordures arrondies
+      ),
+      child: const Center( // Utilisation de Center pour centrer le texte
+        child: Text(
+          'Health',
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 62, 120, 221),
+          ),
+        ),
+      ),
+    ),
+  ],
+),
+
             ],
           ),
         ),
