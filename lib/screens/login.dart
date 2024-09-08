@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 224, 232, 250), // Applique la couleur de fond à la page entière
+      backgroundColor: const Color.fromARGB(255, 241, 245, 254), // Applique la couleur de fond à la page entière
       resizeToAvoidBottomInset: true, // Empêche le débordement lors de l'affichage du clavier
       body: SingleChildScrollView(
          // Permet de faire défiler le contenu

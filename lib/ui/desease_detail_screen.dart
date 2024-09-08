@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Assurez-vous que ce package est ajouté dans pubspec.yaml
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'parameter_widget.dart'; // Assurez-vous que ce package est ajouté dans pubspec.yaml
 
 class DiseaseDetailScreen extends StatelessWidget {
   final String name;
@@ -14,9 +16,9 @@ class DiseaseDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 224, 232, 250),
+      backgroundColor: const Color.fromARGB(255, 241, 245, 254),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 224, 232, 250),
+        backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         leading: Padding(
           padding: const EdgeInsets.all(8.0), // Ajout d'un padding pour l'espacement
           child: CircleAvatar(
@@ -53,10 +55,10 @@ class DiseaseDetailScreen extends StatelessWidget {
         ],
         elevation: 0,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch, // Étendre la carte à toute la largeur disponible
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 16.0), // Espacement vertical
         children: [
-          const SizedBox(height: 10), // Espace en haut pour éloigner l'image de l'AppBar
+          // Image de la maladie
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal
             child: SizedBox(
@@ -87,6 +89,7 @@ class DiseaseDetailScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+          // Description de la maladie
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour la description
             child: Container(
@@ -126,6 +129,7 @@ class DiseaseDetailScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+          // Ligne de laboratoire
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour la ligne
             child: Row(
@@ -150,8 +154,59 @@ class DiseaseDetailScreen extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 20),
+          // Paramètres avec unités
+          const ParameterWidget(
+            icon: Icons.donut_large, // Icône pour Pregnancies
+            parameterName: 'Pregnancies',
+            value: '0',
+            unit: 'times',
+          ),
+          const ParameterWidget(
+            icon: Icons.bloodtype, // Icône pour Glucose
+            parameterName: 'Glucose',
+            value: '0',
+            unit: 'mg/dL',
+          ),
+          const ParameterWidget(
+            icon: FontAwesomeIcons.temperatureHalf, // Icône pour BloodPressure
+            parameterName: 'BloodPressure',
+            value: '0',
+            unit: 'mm Hg',
+          ),
+          const ParameterWidget(
+            icon: FontAwesomeIcons.syringe, // Icône pour SkinThickness
+            parameterName: 'SkinThickness',
+            value: '0',
+            unit: 'mm',
+          ),
+          const ParameterWidget(
+            icon: FontAwesomeIcons.vial, // Icône pour Insulin
+            parameterName: 'Insulin',
+            value: '0',
+            unit: 'mu U/ml',
+          ),
+          const ParameterWidget(
+            icon: FontAwesomeIcons.weight, // Icône pour BMI
+            parameterName: 'BMI',
+            value: '0',
+            unit: 'kg/m²',
+          ),
+          const ParameterWidget(
+            icon: FontAwesomeIcons.dna, // Icône pour DiabetesPedigreeFunction
+            parameterName: 'DiabetesPedigreeFunction',
+            value: '0',
+            unit: '',
+          ),
+          const ParameterWidget(
+            icon: FontAwesomeIcons.cakeCandles, // Icône pour Age
+            parameterName: 'Age',
+            value: '0',
+            unit: 'years',
+          ),
         ],
       ),
     );
   }
 }
+

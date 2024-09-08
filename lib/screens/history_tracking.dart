@@ -7,11 +7,11 @@ class HistoryTrackingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 224, 232, 250),
+        backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         title: const Text('Historique et Suivi'),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 224, 232, 250)
+        color: const Color.fromARGB(255, 241, 245, 254)
 , // Définir la couleur de fond ici
         width: double.infinity, // Occupe toute la largeur
         height: double.infinity, // Occupe toute la hauteur
