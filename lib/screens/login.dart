@@ -12,15 +12,16 @@ class User {
 
 // Liste de faux utilisateurs avec des numéros camerounais
 List<User> fakeUsers = [
-  User(phoneNumber: "+237612345678", password: "password123"),
-  User(phoneNumber: "+237698765432", password: "password321"),
-  User(phoneNumber: "+237677889900", password: "mypassword"),
+  User(phoneNumber: "+237697645415", password: "12345678"),
+  User(phoneNumber: "+237655604000", password: "12345678"),
+  User(phoneNumber: "+237677889900", password: "12345678"),
 ];
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 

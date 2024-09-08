@@ -11,10 +11,16 @@ class PredictionScreen extends StatefulWidget {
 
 class _PredictionScreenState extends State<PredictionScreen> {
   final List<Map<String, dynamic>> _cards = [
+    
+    {
+      'title':'Metabolisme',
+      'imagePath':'assets/gluco-test.png'
+    },
     {
       'title': 'Cardio',
       'imagePath': 'assets/cardio.png', // Chemin de l'image
     },
+     
     {
       'title': 'Brain',
       'imagePath': 'assets/brain.png', // Chemin de l'image
@@ -23,6 +29,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       'title': 'Infectious',
       'imagePath': 'assets/virus.png', // Chemin de l'image
     },
+   
     // Ajoutez d'autres cartes ici si nécessaire
   ];
 
