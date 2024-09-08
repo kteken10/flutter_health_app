@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import '../ui/category_card_widget.dart';
-import '../ui/disease_card_widget.dart';
+import '../ui/disease_detail_screen.dart';
 
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _PredictionScreenState createState() => _PredictionScreenState();
 }
 
