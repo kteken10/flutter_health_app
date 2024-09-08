@@ -1,4 +1,3 @@
-// lib/bottomNav.dart
 import 'package:flutter/material.dart';
 import 'package:bottom_bar/bottom_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -61,7 +60,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 20,
                     ),
                     title: const Text('Acceuil'),
-                    activeColor: Color.fromARGB(255, 23, 92, 210)
+                    activeColor: const Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                   BottomBarItem(
@@ -71,7 +70,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Prédictions'),
-                     activeColor: Color.fromARGB(255, 23, 92, 210)
+                     activeColor: const Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                   BottomBarItem(
@@ -81,7 +80,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Historique'),
-                    activeColor: Color.fromARGB(255, 23, 92, 210)
+                    activeColor: const Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                   const BottomBarItem(

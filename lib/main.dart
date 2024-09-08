@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'navigation/bottomNav.dart';
+import 'navigation/bottom_nav.dart';
 import 'screens/login.dart';
 void main() {
   runApp(const MyApp());

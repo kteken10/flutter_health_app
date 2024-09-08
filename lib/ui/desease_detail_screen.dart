@@ -16,6 +16,7 @@ class DiseaseDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       resizeToAvoidBottomInset: true,
       backgroundColor: const Color.fromARGB(255, 241, 245, 254),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 241, 245, 254),
@@ -61,7 +62,8 @@ class DiseaseDetailScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal
             child: SizedBox(
-              height: 300, // Hauteur spécifique de la carte
+              height: 200,
+              width: double.infinity, // Hauteur spécifique de la carte
               child: Card(
                 color: Colors.white,
                 elevation: 5,
@@ -77,8 +79,8 @@ class DiseaseDetailScreen extends StatelessWidget {
                         child: Image.asset(
                           imagePath,
                           fit: BoxFit.cover,
-                          width: double.infinity, // Prendre toute la largeur disponible de la carte
-                          height: 270,
+                          width: 140, // Prendre toute la largeur disponible de la carte
+                          height: 176,
                         ),
                       ),
                     ),
@@ -146,7 +148,7 @@ class DiseaseDetailScreen extends StatelessWidget {
                   radius: 22,
                   child: Icon(
                     FontAwesomeIcons.flask, // Icône de fiole ou laboratoire
-                    color: Color.fromARGB(255, 132, 177, 254),
+                    color:  Color.fromARGB(255, 132, 177, 254),
                     size: 24,
                   ),
                 ),
@@ -157,7 +159,7 @@ class DiseaseDetailScreen extends StatelessWidget {
           // Paramètres de santé avec effet de défilement
           Expanded(
             child: Container(
-              height: 100, // Hauteur définie pour la zone défilable
+              height: 200, // Hauteur définie pour la zone défilable
               padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement autour de la zone défilable
               child: const SingleChildScrollView(
 
@@ -166,49 +168,49 @@ class DiseaseDetailScreen extends StatelessWidget {
                     ParameterWidget(
                       icon: Icons.donut_large, // Icône pour Pregnancies
                       parameterName: 'Pregnancies',
-                      value: '0',
+                    
                       unit: 'times',
                     ),
                     ParameterWidget(
                       icon: Icons.bloodtype, // Icône pour Glucose
                       parameterName: 'Glucose',
-                      value: '0',
+                     
                       unit: 'mg/dL',
                     ),
                     ParameterWidget(
                       icon: FontAwesomeIcons.temperatureHalf, // Icône pour BloodPressure
                       parameterName: 'BloodPressure',
-                      value: '0',
+                    
                       unit: 'mm Hg',
                     ),
                     ParameterWidget(
                       icon: FontAwesomeIcons.syringe, // Icône pour SkinThickness
                       parameterName: 'SkinThickness',
-                      value: '0',
+                     
                       unit: 'mm',
                     ),
                     ParameterWidget(
                       icon: FontAwesomeIcons.vial, // Icône pour Insulin
                       parameterName: 'Insulin',
-                      value: '0',
+                     
                       unit: 'mu U/ml',
                     ),
                     ParameterWidget(
                       icon: FontAwesomeIcons.weightScale, // Icône pour BMI
                       parameterName: 'BMI',
-                      value: '0',
+                     
                       unit: 'kg/m²',
                     ),
                     ParameterWidget(
                       icon: FontAwesomeIcons.dna, // Icône pour DiabetesPedigreeFunction
                       parameterName: 'DiabetesPedigreeFunction',
-                      value: '0',
+                     
                       unit: '',
                     ),
                     ParameterWidget(
                       icon: FontAwesomeIcons.cakeCandles, // Icône pour Age
                       parameterName: 'Age',
-                      value: '0',
+                   
                       unit: 'years',
                     ),
                   ],

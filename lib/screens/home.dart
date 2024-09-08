@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // Importer la liste des patients
 import '../data/patient.dart';
 import '../model/patient.dart';
-import '../ui/Card.dart';
+import '../ui/card.dart';
 import '../ui/patient.dart';
 
 class FirstScreen extends StatefulWidget {

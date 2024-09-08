@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
 
-class ParameterWidget extends StatelessWidget {
+class ParameterWidget extends StatefulWidget {
   final IconData icon;
   final String parameterName;
-  final String value;
-  final String unit; // Ajout de l'unité
+  final String unit;
 
   const ParameterWidget({
     required this.icon,
     required this.parameterName,
-    required this.value,
-    required this.unit, // Initialisation de l'unité
+    required this.unit,
     super.key,
   });
+
+  @override
+  _ParameterWidgetState createState() => _ParameterWidgetState();
+}
+
+class _ParameterWidgetState extends State<ParameterWidget> {
+  // Stockage de la valeur actuelle
+  int _value = 0;
+
+  // Méthode pour incrémenter la valeur
+  void _increment() {
+    setState(() {
+      _value++;
+    });
+  }
+
+  // Méthode pour décrémenter la valeur
+  void _decrement() {
+    setState(() {
+      if (_value > 0) _value--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +42,7 @@ class ParameterWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white, // Fond blanc
           borderRadius: BorderRadius.circular(10), // Bordures arrondies
-          // border: Border.all(color: Colors.grey, width: 1.5), // Bordure grise visible
+          
         ),
         padding: const EdgeInsets.all(12.0), // Espacement intérieur
         child: Row(
@@ -30,44 +50,68 @@ class ParameterWidget extends StatelessWidget {
           children: [
             // Icône
             CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: const Color.fromARGB(255, 229, 236, 248),
               radius: 22,
               child: Icon(
-                icon,
-                color: Colors.black,
+                widget.icon,
+                color: const Color.fromARGB(255, 132, 177, 254),
                 size: 24,
               ),
             ),
-            // Nom du paramètre
+            // Nom du paramètre avec unité en dessous
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour le nom
-                child: Text(
-                  parameterName,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start, // Alignement à gauche
+                  children: [
+                    Text(
+                      widget.parameterName,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 4), // Petit espacement entre le nom et l'unité
+                    Text(
+                      widget.unit,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            // Valeur du paramètre avec unité
+            // Incrémentation et TextField
             Row(
               children: [
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
+                IconButton(
+                  icon: const Icon(Icons.remove),
+                  onPressed: _decrement,
+                  color: Colors.red,
+                ),
+                SizedBox(
+                  width: 50, // Largeur du champ pour entrer la valeur
+                  child: TextField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    controller: TextEditingController(text: _value.toString()),
+                    onChanged: (val) {
+                      setState(() {
+                        _value = int.tryParse(val) ?? 0;
+                      });
+                    },
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
-                const SizedBox(width: 4), // Petit espacement entre la valeur et l'unité
-                Text(
-                  unit,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
+                IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: _increment,
+                  color: Colors.green,
                 ),
               ],
             ),
