@@ -61,7 +61,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 20,
                     ),
                     title: const Text('Acceuil'),
-                    activeColor: const Color.fromARGB(255, 132, 177, 254)
+                    activeColor: Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                   BottomBarItem(
@@ -71,7 +71,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Prédictions'),
-                    activeColor: const Color.fromARGB(255, 132, 177, 254)
+                     activeColor: Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                   BottomBarItem(
@@ -81,13 +81,13 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Historique'),
-                    activeColor: const Color.fromARGB(255, 132, 177, 254)
+                    activeColor: Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                   const BottomBarItem(
                     icon: Icon(Icons.settings),
                     title: Text('Settings'),
-                    activeColor: Color.fromARGB(255, 132, 177, 254)
+                   activeColor: Color.fromARGB(255, 23, 92, 210)
 ,
                   ),
                 ],

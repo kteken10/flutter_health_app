@@ -45,7 +45,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 241, 245, 254),
+        backgroundColor: const Color.fromARGB(255, 224, 232, 250),
         title: const Text('Prediction'),
         actions: [
           CircleAvatar(
@@ -61,7 +61,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
         elevation: 0,
       ),
       body: Container(
-        color: const Color.fromARGB(255, 241, 245, 254),
+        color: const Color.fromARGB(255, 224, 232, 250),
         width: double.infinity,
         height: double.infinity,
         child: Padding(
