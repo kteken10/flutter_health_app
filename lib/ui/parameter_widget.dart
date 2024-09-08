@@ -22,7 +22,7 @@ class ParameterWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white, // Fond blanc
           borderRadius: BorderRadius.circular(10), // Bordures arrondies
-          border: Border.all(color: Colors.grey, width: 1.5), // Bordure grise visible
+          // border: Border.all(color: Colors.grey, width: 1.5), // Bordure grise visible
         ),
         padding: const EdgeInsets.all(12.0), // Espacement intérieur
         child: Row(
