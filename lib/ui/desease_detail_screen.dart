@@ -55,8 +55,7 @@ class DiseaseDetailScreen extends StatelessWidget {
         ],
         elevation: 0,
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 16.0), // Espacement vertical
+      body: Column(
         children: [
           // Image de la maladie
           Padding(
@@ -154,59 +153,71 @@ class DiseaseDetailScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 20),
-          // Paramètres avec unités
-          const ParameterWidget(
-            icon: Icons.donut_large, // Icône pour Pregnancies
-            parameterName: 'Pregnancies',
-            value: '0',
-            unit: 'times',
-          ),
-          const ParameterWidget(
-            icon: Icons.bloodtype, // Icône pour Glucose
-            parameterName: 'Glucose',
-            value: '0',
-            unit: 'mg/dL',
-          ),
-          const ParameterWidget(
-            icon: FontAwesomeIcons.temperatureHalf, // Icône pour BloodPressure
-            parameterName: 'BloodPressure',
-            value: '0',
-            unit: 'mm Hg',
-          ),
-          const ParameterWidget(
-            icon: FontAwesomeIcons.syringe, // Icône pour SkinThickness
-            parameterName: 'SkinThickness',
-            value: '0',
-            unit: 'mm',
-          ),
-          const ParameterWidget(
-            icon: FontAwesomeIcons.vial, // Icône pour Insulin
-            parameterName: 'Insulin',
-            value: '0',
-            unit: 'mu U/ml',
-          ),
-          const ParameterWidget(
-            icon: FontAwesomeIcons.weight, // Icône pour BMI
-            parameterName: 'BMI',
-            value: '0',
-            unit: 'kg/m²',
-          ),
-          const ParameterWidget(
-            icon: FontAwesomeIcons.dna, // Icône pour DiabetesPedigreeFunction
-            parameterName: 'DiabetesPedigreeFunction',
-            value: '0',
-            unit: '',
-          ),
-          const ParameterWidget(
-            icon: FontAwesomeIcons.cakeCandles, // Icône pour Age
-            parameterName: 'Age',
-            value: '0',
-            unit: 'years',
+        
+          // Paramètres de santé avec effet de défilement
+          Expanded(
+            child: Container(
+              height: 100, // Hauteur définie pour la zone défilable
+              padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement autour de la zone défilable
+              child: const SingleChildScrollView(
+
+                child: Column(
+                  children: [
+                    ParameterWidget(
+                      icon: Icons.donut_large, // Icône pour Pregnancies
+                      parameterName: 'Pregnancies',
+                      value: '0',
+                      unit: 'times',
+                    ),
+                    ParameterWidget(
+                      icon: Icons.bloodtype, // Icône pour Glucose
+                      parameterName: 'Glucose',
+                      value: '0',
+                      unit: 'mg/dL',
+                    ),
+                    ParameterWidget(
+                      icon: FontAwesomeIcons.temperatureHalf, // Icône pour BloodPressure
+                      parameterName: 'BloodPressure',
+                      value: '0',
+                      unit: 'mm Hg',
+                    ),
+                    ParameterWidget(
+                      icon: FontAwesomeIcons.syringe, // Icône pour SkinThickness
+                      parameterName: 'SkinThickness',
+                      value: '0',
+                      unit: 'mm',
+                    ),
+                    ParameterWidget(
+                      icon: FontAwesomeIcons.vial, // Icône pour Insulin
+                      parameterName: 'Insulin',
+                      value: '0',
+                      unit: 'mu U/ml',
+                    ),
+                    ParameterWidget(
+                      icon: FontAwesomeIcons.weightScale, // Icône pour BMI
+                      parameterName: 'BMI',
+                      value: '0',
+                      unit: 'kg/m²',
+                    ),
+                    ParameterWidget(
+                      icon: FontAwesomeIcons.dna, // Icône pour DiabetesPedigreeFunction
+                      parameterName: 'DiabetesPedigreeFunction',
+                      value: '0',
+                      unit: '',
+                    ),
+                    ParameterWidget(
+                      icon: FontAwesomeIcons.cakeCandles, // Icône pour Age
+                      parameterName: 'Age',
+                      value: '0',
+                      unit: 'years',
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 }
-
