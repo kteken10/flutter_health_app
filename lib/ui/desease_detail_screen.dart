@@ -47,6 +47,29 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     super.dispose();
   }
 
+  void _showModal() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Analyse en cours'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: Image.asset('assets/ia_robot.gif'),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fermer la modale
+              },
+              child: const Text('Fermer'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,22 +207,25 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
                     ],
                   ),
                 ),
-                AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return ScaleTransition(
-                      scale: _scaleAnimation,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 22,
-                        child: Icon(
-                          FontAwesomeIcons.heartPulse, // Icône d'analyse
-                          color: _colorAnimation.value,
-                          size: 24,
+                GestureDetector(
+                  onTap: _showModal, // Afficher la modale au clic
+                  child: AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return ScaleTransition(
+                        scale: _scaleAnimation,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          radius: 22,
+                          child: Icon(
+                            FontAwesomeIcons.heartPulse, // Icône d'analyse
+                            color: _colorAnimation.value,
+                            size: 24,
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
                 const Expanded(
                   child: Row(

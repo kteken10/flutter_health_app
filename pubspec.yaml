@@ -16,7 +16,6 @@ dependencies:
   shared_preferences: ^2.0.8
   intl_phone_number_input: ^0.7.4
   font_awesome_flutter: ^10.1.0
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
@@ -58,7 +57,7 @@ flutter:
     - assets/gluco-test.png
     - assets/obesite.png
     - assets/diabete.png
-
+    - assets/ia_robot.gif
 
 
   # To add custom fonts to your application, add a fonts section here,
