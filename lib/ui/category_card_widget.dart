@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CardWidget extends StatelessWidget {
+class CategoryCardWidget extends StatelessWidget {
   final String title;
   final String imagePath; // Chemin de l'image à afficher
-  final VoidCallback onTap; // Callback pour l'action de tap
-  final double cardWidth; // Largeur de la carte
-  final Color backgroundColor; // Couleur de fond de la carte
-  final Color avatarBackgroundColor; // Couleur de fond de l'avatar
+  final bool isSelected;
+  final VoidCallback onTap;
 
-  const CardWidget({
+  const CategoryCardWidget({
     super.key,
     required this.title,
-    required this.imagePath,
+    required this.imagePath, // Ajout du chemin de l'image
+    required this.isSelected,
     required this.onTap,
-    required this.cardWidth,
-    required this.backgroundColor,
-    required this.avatarBackgroundColor,
   });
 
   @override
@@ -23,9 +19,9 @@ class CardWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        width: cardWidth,
+        width: 100, // Largeur de la carte
         child: Card(
-          color: backgroundColor,
+          color: isSelected ? const Color(0xFFD6E4FF) : Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
@@ -36,14 +32,14 @@ class CardWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min, // Ajuste la taille du Column selon le contenu
               children: [
                 CircleAvatar(
-                  backgroundColor: avatarBackgroundColor,
+                  backgroundColor: const Color(0xFFE0F7FA), // Couleur de fond de l'avatar
                   radius: 30,
                   child: SizedBox(
                     width: 70, // Largeur de l'image
-                    height: 70, // Hauteur de l'image
+                    height:90, // Hauteur de l'image
                     child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.contain, // Ajuste l'image dans le SizedBox
+                      imagePath, // Affichage de l'image
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -55,6 +51,7 @@ class CardWidget extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                     color: Color(0xFF4A4A4A),
                   ),
+                  textAlign: TextAlign.center, // Centrer le texte
                 ),
               ],
             ),

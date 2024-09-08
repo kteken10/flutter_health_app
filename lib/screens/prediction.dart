@@ -1,43 +1,52 @@
 import 'package:flutter/material.dart';
-import '../ui/mini_card.dart';
+import '../ui/category_card_widget.dart';
+import '../ui/disease_card_widget.dart';
 
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _PredictionScreenState createState() => _PredictionScreenState();
 }
 
 class _PredictionScreenState extends State<PredictionScreen> {
-  final List<Map<String, dynamic>> _cards = [
-    
+  final List<Map<String, dynamic>> _categories = [
     {
-      'title':'Metabolisme',
-      'imagePath':'assets/gluco-test.png'
+      'title': 'Metabolisme',
+      'imagePath': 'assets/gluco-test.png',
+      'diseases': [
+        {
+          'name': 'Diabète',
+          'imagePath': 'assets/diabete.png',
+        },
+        {
+          'name': 'Obésité',
+          'imagePath': 'assets/obesite.png',
+        },
+      ]
     },
     {
       'title': 'Cardio',
-      'imagePath': 'assets/cardio.png', // Chemin de l'image
+      'imagePath': 'assets/cardio.png',
+      'diseases': []
     },
-     
     {
       'title': 'Brain',
-      'imagePath': 'assets/brain.png', // Chemin de l'image
+      'imagePath': 'assets/brain.png',
+      'diseases': []
     },
     {
       'title': 'Infectious',
-      'imagePath': 'assets/virus.png', // Chemin de l'image
+      'imagePath': 'assets/virus.png',
+      'diseases': []
     },
-   
-    // Ajoutez d'autres cartes ici si nécessaire
   ];
 
-  int _selectedCardIndex = 0; // Suivi de l'index de la carte sélectionnée
+  int _selectedCategoryIndex = 0;
 
-  void _onCardTapped(int index) {
+  void _onCategoryTapped(int index) {
     setState(() {
-      _selectedCardIndex = index; // Mettre à jour l'index sélectionné
+      _selectedCategoryIndex = index;
     });
   }
 
@@ -45,7 +54,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 224, 232, 250),
+        backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         title: const Text('Prediction'),
         actions: [
           CircleAvatar(
@@ -61,7 +70,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
         elevation: 0,
       ),
       body: Container(
-        color: const Color.fromARGB(255, 224, 232, 250),
+        color: const Color.fromARGB(255, 241, 245, 254),
         width: double.infinity,
         height: double.infinity,
         child: Padding(
@@ -115,34 +124,27 @@ class _PredictionScreenState extends State<PredictionScreen> {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: 123, // Hauteur contrôlée pour la liste de cartes
+                height: 123,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: _cards.length,
+                  itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(right: 10.0),
-                      child: CardWidget(
-                        cardWidth: 113,
-                        title: _cards[index]['title'],
-                        imagePath: _cards[index]['imagePath'], // Utiliser l'image PNG
-                        onTap: () => _onCardTapped(index),
-                        backgroundColor: _selectedCardIndex == index
-                            ? const Color.fromARGB(255, 132, 177, 254)
-                            : Colors.white, // Changer la couleur de fond
-                        avatarBackgroundColor: _selectedCardIndex == index
-                            ? const Color.fromARGB(255, 132, 177, 254)
-                            : Colors.white, // Changer la couleur de l'avatar
+                      child: CategoryCardWidget(
+                        title: _categories[index]['title'],
+                        imagePath: _categories[index]['imagePath'],
+                        isSelected: _selectedCategoryIndex == index,
+                        onTap: () => _onCategoryTapped(index),
                       ),
                     );
                   },
                 ),
               ),
               const SizedBox(height: 10),
-              // Ajout de l'indicateur de sélection
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(_cards.length, (index) {
+                children: List.generate(_categories.length, (index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Container(
@@ -150,48 +152,47 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       height: 5.0,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: _selectedCardIndex == index
-                            ? const Color.fromARGB(255, 52, 121, 240) // Couleur du point sélectionné
-                            : const Color.fromARGB(255, 195, 215, 248), // Couleur des points non sélectionnés
+                        color: _selectedCategoryIndex == index
+                            ? const Color.fromARGB(255, 52, 121, 240)
+                            : const Color.fromARGB(255, 195, 215, 248),
                       ),
                     ),
                   );
                 }),
               ),
               const SizedBox(height: 10),
-              // Ajout du texte "Disease"
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  children: [
-    const Text(
-      'Disease',
-      style: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-        color: Color(0xFF4A4A4A),
-      ),
-    ),
-    Container(
-      width: 90,  // Largeur plus grande que la hauteur
-      height: 30, // Hauteur plus petite
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 216, 227, 247), // Couleur de fond
-        borderRadius: BorderRadius.circular(20), // Bordures arrondies
-      ),
-      child: const Center( // Utilisation de Center pour centrer le texte
-        child: Text(
-          'Health',
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: Color.fromARGB(255, 62, 120, 221),
-          ),
-        ),
-      ),
-    ),
-  ],
-),
-
+              const Text(
+                'Disease',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4A4A4A),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                  ),
+                  itemCount: _categories[_selectedCategoryIndex]['diseases'].length,
+                  itemBuilder: (context, index) {
+                    final disease = _categories[_selectedCategoryIndex]['diseases'][index];
+                    
+                    // Vérifie que la maladie n'est pas vide
+                    if (disease['name'].isNotEmpty) {
+                      return DiseaseCardWidget(
+                        name: disease['name'],
+                        imagePath: disease['imagePath'],
+                      );
+                    } else {
+                      return const SizedBox(); // Si la maladie est vide, retourne un widget vide
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),
