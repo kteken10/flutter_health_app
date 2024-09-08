@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../ui/category_card_widget.dart';
 import '../ui/disease_card.dart';
 
+
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
 
