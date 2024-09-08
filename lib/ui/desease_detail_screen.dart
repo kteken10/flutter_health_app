@@ -132,7 +132,7 @@ class DiseaseDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween, // Espacement entre les éléments
               children: [
                 Text(
-                  'Your Condition',
+                  'Laboratory',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
