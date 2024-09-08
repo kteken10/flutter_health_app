@@ -31,3 +31,48 @@ Description: Cet onglet offre de l'aide et du support aux utilisateurs. Il peut 
 7. Profil (Profile)
 Icône: Un utilisateur ou une silhouette de personne
 Description: Cet onglet permet aux médecins de gérer leurs informations de profil et de voir leur historique d'utilisation de l'application.
+
+Le patient est atteint de diabète avec un taux de quatre-vingt-quinze pour cent selon les résultats du test assisté par intelligence artificielle. 
+N'hésitez pas à télécharger ou imprimer le PDF à bientôt.
+
+
+
+Voici les données formatées pour les patients, avec le libellé de chaque donnée ajouté et en tenant compte que `1` signifie que le patient est atteint de diabète et `0` signifie qu'il ne l'est pas :
+
+### Patient 1
+- **Diabetes Status:** Yes
+- **Pregnancies:** 6
+- **Glucose:** 148
+- **Blood Pressure:** 72
+- **Skin Thickness:** 35
+- **Insulin:** 0
+- **BMI:** 33.6
+- **Diabetes Pedigree Function:** 0.627
+- **Age:** 50
+- **Outcome - Diabetes?:** 1
+
+### Patient 2
+- **Diabetes Status:** No
+- **Pregnancies:** 1
+- **Glucose:** 85
+- **Blood Pressure:** 66
+- **Skin Thickness:** 29
+- **Insulin:** 0
+- **BMI:** 26.6
+- **Diabetes Pedigree Function:** 0.351
+- **Age:** 31
+- **Outcome - Diabetes?:** 0
+
+### Patient 3
+- **Diabetes Status:** Yes
+- **Pregnancies:** 0
+- **Glucose:** 109
+- **Blood Pressure:** 88
+- **Skin Thickness:** 30
+- **Insulin:** 0
+- **BMI:** 32.5
+- **Diabetes Pedigree Function:** 0.855
+- **Age:** 38
+- **Outcome - Diabetes?:** 1
+
+

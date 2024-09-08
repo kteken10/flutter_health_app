@@ -38,85 +38,87 @@ class _ParameterWidgetState extends State<ParameterWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric( vertical: 8.0), // Espacement
+      padding: const EdgeInsets.symmetric(vertical: 8.0), // Espacement
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white, // Fond blanc
           borderRadius: BorderRadius.circular(10), // Bordures arrondies
-          
         ),
         padding: const EdgeInsets.all(12.0), // Espacement intérieur
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Espacement entre les colonnes
-          children: [
-            // Icône
-            CircleAvatar(
-              backgroundColor: const Color.fromARGB(255, 229, 236, 248),
-              radius: 22,
-              child: Icon(
-                widget.icon,
-                color: const Color.fromARGB(255, 132, 177, 254),
-                size: 24,
-              ),
-            ),
-            // Nom du paramètre avec unité en dessous
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour le nom
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // Alignement à gauche
-                  children: [
-                    Text(
-                      widget.parameterName,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 4), // Petit espacement entre le nom et l'unité
-                    Text(
-                      widget.unit,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween, // Espacement entre les colonnes
+            children: [
+              // Icône
+              CircleAvatar(
+                backgroundColor: const Color.fromARGB(255, 229, 236, 248),
+                radius: 22,
+                child: Icon(
+                  widget.icon,
+                  color: const Color.fromARGB(255, 132, 177, 254),
+                  size: 24,
                 ),
               ),
-            ),
-            // Incrémentation et TextField
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.remove),
-                  onPressed: _decrement,
-                  color: Colors.red,
-                ),
-                SizedBox(
-                  width: 50, // Largeur du champ pour entrer la valeur
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    controller: TextEditingController(text: _value.toString()),
-                    onChanged: (val) {
-                      setState(() {
-                        _value = int.tryParse(val) ?? 0;
-                      });
-                    },
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
+              // Nom du paramètre avec unité en dessous
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour le nom
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start, // Alignement à gauche
+                    children: [
+                      Text(
+                        widget.parameterName,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 4), // Petit espacement entre le nom et l'unité
+                      Text(
+                        widget.unit,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: _increment,
-                  color: Colors.green,
-                ),
-              ],
-            ),
-          ],
+              ),
+              // Incrémentation et TextField
+              Row(
+                mainAxisSize: MainAxisSize.min, // Limite la taille de la ligne au contenu
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: _decrement,
+                    color: Colors.red,
+                  ),
+                  SizedBox(
+                    width: 50, // Largeur du champ pour entrer la valeur
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      controller: TextEditingController(text: _value.toString()),
+                      onChanged: (val) {
+                        setState(() {
+                          _value = int.tryParse(val) ?? 0;
+                        });
+                      },
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: _increment,
+                    color: Colors.green,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

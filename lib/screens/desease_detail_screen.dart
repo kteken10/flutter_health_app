@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'parameter_widget.dart';
-import 'lab_section.dart'; // Assurez-vous que ce fichier est importé
+import '../ui/result_analyse.dart';
+import '../ui/parameter_widget.dart';
+import '../ui/lab_section.dart'; // Assurez-vous que ce fichier est importé
 
 class DiseaseDetailScreen extends StatefulWidget {
   final String name;
@@ -52,23 +53,27 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        // Montre la modal
         return AlertDialog(
           title: const Text('Analyse en cours'),
           content: SizedBox(
             width: double.maxFinite,
             child: Image.asset('assets/ia_robot.gif'),
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Fermer la modale
-              },
-              child: const Text('Fermer'),
-            ),
-          ],
         );
       },
     );
+
+    // Ferme la modal après 7 secondes et navigue vers la page vierge
+    Future.delayed(const Duration(seconds: 9), () {
+      Navigator.of(context, rootNavigator: true).pop(); // Ferme la modal
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ResultAnalyse(), // Remplacez par votre page vierge
+        ),
+      );
+    });
   }
 
   @override
@@ -253,3 +258,4 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     );
   }
 }
+

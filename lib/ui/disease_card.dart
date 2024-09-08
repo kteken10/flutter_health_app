@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'desease_detail_screen.dart';
+import '../screens/desease_detail_screen.dart';
 
 class DiseaseCardWidget extends StatelessWidget {
   final String name;
