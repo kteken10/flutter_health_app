@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'parameter_widget.dart'; // Assurez-vous que ce package est ajouté dans pubspec.yaml
+import 'parameter_widget.dart';
+import 'lab_section.dart'; // Assurez-vous que ce fichier est importé
 
 class DiseaseDetailScreen extends StatefulWidget {
   final String name;
@@ -188,63 +189,11 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
           ),
           const SizedBox(height: 20),
           // Ligne de laboratoire avec icône d'analyse animée au milieu
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour la ligne
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center, // Centrer le contenu
-              children: [
-                const Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Laboratory',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  onTap: _showModal, // Afficher la modale au clic
-                  child: AnimatedBuilder(
-                    animation: _controller,
-                    builder: (context, child) {
-                      return ScaleTransition(
-                        scale: _scaleAnimation,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 22,
-                          child: Icon(
-                            FontAwesomeIcons.heartPulse, // Icône d'analyse
-                            color: _colorAnimation.value,
-                            size: 24,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 22,
-                        child: Icon(
-                          FontAwesomeIcons.flask, // Icône de fiole ou laboratoire
-                          color: Color.fromARGB(255, 132, 177, 254),
-                          size: 24,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          LabSection(
+            onTap: _showModal,
+            controller: _controller,
+            scaleAnimation: _scaleAnimation,
+            colorAnimation: _colorAnimation,
           ),
           // Paramètres de santé avec effet de défilement
           Expanded(
