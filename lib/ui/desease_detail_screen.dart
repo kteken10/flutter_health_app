@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Ajoutez ce package pour les icônes
+import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // Assurez-vous que ce package est ajouté dans pubspec.yaml
 
 class DiseaseDetailScreen extends StatelessWidget {
   final String name;
@@ -43,7 +43,7 @@ class DiseaseDetailScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             radius: 22,
             child: IconButton(
-              icon: const Icon(Icons.menu, color: Colors.black),
+              icon: const Icon(Icons.menu, color: Color.fromARGB(255, 132, 177, 254)),
               onPressed: () {
                 // Action du menu
               },
@@ -138,10 +138,14 @@ class DiseaseDetailScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Icon(
-                  FontAwesomeIcons.thermometer, // Icône de pipette ou jauge de laboratoire
-                  color: Colors.black,
-                  size: 24,
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 22,
+                  child: Icon(
+                    FontAwesomeIcons.flask, // Icône de fiole ou laboratoire
+                    color: Color.fromARGB(255, 132, 177, 254),
+                    size: 24,
+                  ),
                 ),
               ],
             ),
