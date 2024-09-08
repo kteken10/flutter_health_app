@@ -19,7 +19,7 @@ class CategoryCardWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        width: 100, // Largeur de la carte
+        width: 120, // Largeur de la carte
         child: Card(
           color: isSelected ? const Color(0xFFD6E4FF) : Colors.white,
           shape: RoundedRectangleBorder(
