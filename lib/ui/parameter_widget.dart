@@ -13,6 +13,7 @@ class ParameterWidget extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _ParameterWidgetState createState() => _ParameterWidgetState();
 }
 
@@ -37,7 +38,7 @@ class _ParameterWidgetState extends State<ParameterWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Espacement
+      padding: const EdgeInsets.symmetric( vertical: 8.0), // Espacement
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white, // Fond blanc
