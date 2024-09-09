@@ -96,13 +96,7 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
             ),
           ),
         ),
-        title: Text(
-          widget.name,
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+       
         centerTitle: true,
         actions: [
           CircleAvatar(
