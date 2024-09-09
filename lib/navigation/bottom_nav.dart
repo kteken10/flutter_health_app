@@ -5,18 +5,25 @@ import 'package:mediscanai/screens/home.dart';
 import 'package:mediscanai/screens/history_tracking.dart';
 import 'package:mediscanai/screens/prediction.dart';
 import 'package:mediscanai/screens/settings_screen.dart';
+  // Importer le fichier de la modale
+import 'package:mediscanai/model/patient.dart';
+
+import '../data/patients_list.dart';
+import '../ui/add_patient_modal.dart';  // Importer le modèle de patient
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _BottomNavState createState() => _BottomNavState();
 }
 
 class _BottomNavState extends State<BottomNav> {
   int _currentPage = 0;
   final PageController _pageController = PageController();
+
+  // Liste des patients
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +67,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 20,
                     ),
                     title: const Text('Acceuil'),
-                    activeColor: const Color.fromARGB(255, 23, 92, 210)
-,
+                    activeColor: const Color.fromARGB(255, 23, 92, 210),
                   ),
                   BottomBarItem(
                     icon: SvgPicture.asset(
@@ -70,8 +76,7 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Prédictions'),
-                     activeColor: const Color.fromARGB(255, 23, 92, 210)
-,
+                    activeColor: const Color.fromARGB(255, 23, 92, 210),
                   ),
                   BottomBarItem(
                     icon: SvgPicture.asset(
@@ -80,14 +85,12 @@ class _BottomNavState extends State<BottomNav> {
                       width: 24,
                     ),
                     title: const Text('Historique'),
-                    activeColor: const Color.fromARGB(255, 23, 92, 210)
-,
+                    activeColor: const Color.fromARGB(255, 23, 92, 210),
                   ),
                   const BottomBarItem(
                     icon: Icon(Icons.settings),
                     title: Text('Settings'),
-                   activeColor: Color.fromARGB(255, 23, 92, 210)
-,
+                    activeColor: Color.fromARGB(255, 23, 92, 210),
                   ),
                 ],
               ),
@@ -96,9 +99,21 @@ class _BottomNavState extends State<BottomNav> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor:  const Color.fromARGB(255, 132, 177, 254)
-,
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AddPatientModal(
+                onPatientAdded: (Patient newPatient) {
+                  setState(() {
+                    patients.add(newPatient);  // Ajouter le nouveau patient à la liste
+                  });
+                },
+              );
+            },
+          );
+        },
+        backgroundColor: const Color.fromARGB(255, 132, 177, 254),
         foregroundColor: Colors.white,
         elevation: 6,
         shape: const RoundedRectangleBorder(
@@ -110,7 +125,6 @@ class _BottomNavState extends State<BottomNav> {
       bottomSheet: const Padding(
         padding: EdgeInsets.only(bottom: 110.0),
         child: SizedBox.shrink(),
-        
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/patient.dart';
+import '../data/patients_list.dart';
 import '../model/patient.dart';
 import '../ui/card.dart';
 import '../ui/patient.dart';

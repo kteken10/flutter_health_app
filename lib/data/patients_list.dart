@@ -1,7 +1,7 @@
 import '../model/patient.dart';
 
 final List<Patient> patients = [
-   Patient(
+  Patient(
     name: 'Assou-Franck',
     age: '01/01/1987',
     status: 'En traitement',
@@ -14,15 +14,16 @@ final List<Patient> patients = [
     imageUrl: 'assets/sigar-man.jpg',
   ),
   Patient(
-    name: 'Amina Mballa',
-    age: '15/03/1992',
-    status: 'Stable',
-    imageUrl: 'assets/happy-man.jpg',
-  ),
-  Patient(
-    name: 'Emmanuel Ngouo',
-    age: '22/08/1975',
-    status: 'En rémission',
-    imageUrl: 'assets/wow-man.jpg',
-  ),
+      name: 'Amina Mballa',
+      age: '15/03/1992',
+      status: 'Stable',
+      imageUrl: 'assets/happy-man.jpg',
+    ),
+    Patient(
+      name: 'Emmanuel Ngouo',
+      age: '22/08/1975',
+      status: 'En rémission',
+      imageUrl: 'assets/wow-man.jpg',
+    ),
+  // Ajout dynamique des patients ici
 ];
