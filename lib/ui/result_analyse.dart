@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';  // Assure-toi d'importer audioplayers
 import 'bar_chart_sample.dart';  // Assure-toi que le chemin est correct
 
-class ResultAnalyse extends StatelessWidget {
+class ResultAnalyse extends StatefulWidget {
   const ResultAnalyse({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _ResultAnalyseState createState() => _ResultAnalyseState();
+}
+
+class _ResultAnalyseState extends State<ResultAnalyse> {
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _playAudio();
+  }
+
+  void _playAudio() async {
+    await _audioPlayer.setSource(AssetSource('ia_robot_result.mp3'));
+   
+    _audioPlayer.resume();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +82,7 @@ class ResultAnalyse extends StatelessWidget {
                   ),
                   child: const Center(
                     child: Text(
-                      'Contenu',
+                      '95%',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.black,
@@ -70,7 +92,7 @@ class ResultAnalyse extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),  // Espacement de 40 pixels entre les cercles
             // Graphique en barres sous le cercle
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),  // Ajoute une marge horizontale de 16
@@ -94,13 +116,19 @@ class ResultAnalyse extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
 }
 
 class PartialCirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.blue
+      ..color = Colors.red
       ..style = PaintingStyle.stroke
       ..strokeWidth = 20;
 

@@ -125,6 +125,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 6,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -135,6 +136,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 148,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -145,6 +147,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 72,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -155,6 +158,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 35,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -165,6 +169,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 0,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -175,6 +180,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 33.6,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -185,6 +191,7 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 0.627,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
@@ -195,8 +202,23 @@ class BarChartSample3State extends State<BarChartSample3> {
           toY: 50,
           color: Colors.blue,
           width: 16,
+          borderRadius: BorderRadius.zero,
         )
       ],
     ),
   ];
+
+  // Methode pour afficher les valeurs au-dessus des barres
+  Widget _buildBarLabel(double value, double y, Color color) {
+    return Positioned(
+      bottom: y + 10, // Ajuste la position de l'étiquette au-dessus de la barre
+      child: Text(
+        value.toString(),
+        style: TextStyle(
+          color: color,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
 }

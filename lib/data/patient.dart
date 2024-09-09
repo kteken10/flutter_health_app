@@ -1,6 +1,12 @@
 import '../model/patient.dart';
 
 final List<Patient> patients = [
+   Patient(
+    name: 'Assou-Franck',
+    age: '01/01/1987',
+    status: 'En traitement',
+    imageUrl: 'assets/Assou-patient.png',
+  ),
   Patient(
     name: 'Jean-Baptiste ',
     age: '01/01/1980',

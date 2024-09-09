@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// Importer la liste des patients
 import '../data/patient.dart';
 import '../model/patient.dart';
 import '../ui/card.dart';
