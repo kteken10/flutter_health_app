@@ -8,10 +8,12 @@ import '../ui/lab_section.dart'; // Assurez-vous que ce fichier est importé
 class DiseaseDetailScreen extends StatefulWidget {
   final String name;
   final String imagePath;
+  final String description; // Ajouté pour la description de la maladie
 
   const DiseaseDetailScreen({
     required this.name,
     required this.imagePath,
+    required this.description, // Ajouté pour la description de la maladie
     super.key,
   });
 
@@ -30,9 +32,9 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    )..repeat(reverse: true);
+  duration: const Duration(seconds: 1),
+  vsync: this,  // Add this line to fix the issue
+)..repeat(reverse: true);
 
     _scaleAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
@@ -53,7 +55,6 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        // Montre la modal
         return AlertDialog(
           title: const Text('Analyse en cours'),
           content: SizedBox(
@@ -64,13 +65,12 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
       },
     );
 
-    // Ferme la modal après 7 secondes et navigue vers la page vierge
     Future.delayed(const Duration(seconds: 9), () {
-      Navigator.of(context, rootNavigator: true).pop(); // Ferme la modal
+      Navigator.of(context, rootNavigator: true).pop();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const ResultAnalyse(), // Remplacez par votre page vierge
+          builder: (context) => const ResultAnalyse(),
         ),
       );
     });
@@ -84,14 +84,14 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         leading: Padding(
-          padding: const EdgeInsets.all(8.0), // Ajout d'un padding pour l'espacement
+          padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
             backgroundColor: Colors.white,
             radius: 22,
             child: IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () {
-                Navigator.of(context).pop(); // Action de retour
+                Navigator.of(context).pop();
               },
             ),
           ),
@@ -123,26 +123,26 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
         children: [
           // Image de la maladie
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: SizedBox(
               height: 200,
-              width: double.infinity, // Hauteur spécifique de la carte
+              width: double.infinity,
               child: Card(
                 color: Colors.white,
                 elevation: 5,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0), // Bordures arrondies
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0), // Padding vertical de 8
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16.0),
                         child: Image.asset(
                           widget.imagePath,
                           fit: BoxFit.cover,
-                          width: 140, // Prendre toute la largeur disponible de la carte
+                          width: 140,
                           height: 176,
                         ),
                       ),
@@ -155,35 +155,36 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
           const SizedBox(height: 20),
           // Description de la maladie
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement horizontal pour la description
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16.0), // Bordures arrondies
+                borderRadius: BorderRadius.circular(16.0),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.3),
                     spreadRadius: 2,
                     blurRadius: 4,
-                    offset: const Offset(0, 2), // Déplacement de l'ombre
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Description de la maladie',
-                    style: TextStyle(
-                      fontSize: 18,
+                    widget.name,
+                    style: const TextStyle(
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
-                    'Ici, vous pouvez ajouter une description détaillée de la maladie. Cette section peut inclure des informations sur les symptômes, les causes, les traitements, etc.',
-                    style: TextStyle(
+                    widget.description, // Utilisation de la description passée en paramètre
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.black87,
                     ),
@@ -203,8 +204,7 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
           // Paramètres de santé avec effet de défilement
           Expanded(
             child: Container(
-              height: 200, // Hauteur définie pour la zone défilable
-              padding: const EdgeInsets.symmetric(horizontal: 16.0), // Espacement autour de la zone défilable
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: const SingleChildScrollView(
                 child: Column(
                   children: [
@@ -258,4 +258,3 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     );
   }
 }
-

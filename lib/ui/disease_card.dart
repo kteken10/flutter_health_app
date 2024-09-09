@@ -4,10 +4,12 @@ import '../screens/desease_detail_screen.dart';
 class DiseaseCardWidget extends StatelessWidget {
   final String name;
   final String imagePath;
+  final String description;
 
   const DiseaseCardWidget({
     required this.name,
     required this.imagePath,
+    required this.description,
     super.key,
   });
 
@@ -21,6 +23,7 @@ class DiseaseCardWidget extends StatelessWidget {
             builder: (context) => DiseaseDetailScreen(
               name: name,
               imagePath: imagePath,
+              description: description,
             ),
           ),
         );

@@ -20,10 +20,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
         {
           'name': 'Diabète',
           'imagePath': 'assets/diabete.png',
+          'description': 'Le diabète est une maladie chronique qui affecte la manière dont le corps utilise le sucre sanguin (glucose).',
         },
         {
           'name': 'Obésité',
           'imagePath': 'assets/obesite.png',
+           'description': 'L’obésité est une maladie caractérisée par une accumulation excessive de graisse corporelle.',
         },
       ]
     },
@@ -188,6 +190,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
                       return DiseaseCardWidget(
                         name: disease['name'],
                         imagePath: disease['imagePath'],
+                        description: disease['description'],
                       );
                     } else {
                       return const SizedBox(); // Si la maladie est vide, retourne un widget vide
