@@ -105,11 +105,11 @@ class PartialCirclePainter extends CustomPainter {
       ..strokeWidth = 20;
 
     final double radius = size.width / 2;
-    final double padding = 10;
+    const double padding = 10;
 
     final Rect rect = Rect.fromCircle(center: size.center(Offset.zero), radius: radius - padding);
-    final double startAngle = -0.5 * 3.14;
-    final double sweepAngle = 2 * 3.14 * 0.75;
+    const double startAngle = -0.5 * 3.14;
+    const double sweepAngle = 2 * 3.14 * 0.75;
 
     canvas.drawArc(rect, startAngle, sweepAngle, false, paint);
   }
