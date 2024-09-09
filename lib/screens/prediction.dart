@@ -18,12 +18,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
       'imagePath': 'assets/gluco-test.png',
       'diseases': [
         {
-          'name': 'Diabète',
+          'name': 'Diabete',
           'imagePath': 'assets/diabete.png',
           'description': 'Le diabète est une maladie chronique qui affecte la manière dont le corps utilise le sucre sanguin (glucose).',
         },
         {
-          'name': 'Obésité',
+          'name': 'Obesite',
           'imagePath': 'assets/obesite.png',
            'description': 'L’obésité est une maladie caractérisée par une accumulation excessive de graisse corporelle.',
         },
@@ -42,7 +42,19 @@ class _PredictionScreenState extends State<PredictionScreen> {
     {
       'title': 'Infectious',
       'imagePath': 'assets/virus.png',
-      'diseases': []
+     'diseases': [
+  {
+    'name': 'Covid-19',
+    'imagePath': 'assets/covid.png',
+    'description': 'Le Covid-19 est une maladie respiratoire causée par le virus SARS-CoV-2. Il se transmet principalement par les gouttelettes respiratoires et peut provoquer des symptômes allant de légers à sévères, tels que la fièvre, la toux, et la difficulté respiratoire.',
+  },
+  {
+    'name': 'HIV',
+    'imagePath': 'assets/Hiv.png',
+    'description': 'Le VIH (Virus de l\'Immunodéficience Humaine) est un virus qui attaque le système immunitaire, affaiblissant la capacité du corps à combattre les infections. Si non traité, il peut mener au SIDA (Syndrome d\'Immunodéficience Acquise).',
+  },
+]
+
     },
   ];
 

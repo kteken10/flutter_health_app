@@ -62,6 +62,9 @@ flutter:
     - assets/ia_robot.gif
     - assets/ia_robot_result.mp3
     - assets/Assou-patient.png
+    - assets/Hiv.png
+    - assets/covid.png
+    - assets/hypertension.png
 
 
 
