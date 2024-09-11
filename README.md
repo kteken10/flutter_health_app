@@ -61,22 +61,23 @@ MediScanAI is a mobile application designed for doctors to predict diseases base
 - **3. Selecting Disease Categories**  
   Navigate through different disease categories to view and select diseases. This organized structure helps in quickly accessing relevant disease information.
 
-  *Screenshot Placeholder*: Insert a screenshot showing the disease category selection screen.
+![DeseaseCategory](https://github.com/user-attachments/assets/fde0e15a-7a96-472e-86a4-976df48613a8)
 
 - **4. Entering Laboratory Data**  
   After selecting a disease, a form modal will open. Here, doctors can manually enter laboratory results for a more tailored prediction.
-
-  *Screenshot Placeholder*: Insert a screenshot showing the form modal for entering lab data.
+![DeseaseParameter](https://github.com/user-attachments/assets/79fa45f6-9e33-4fa4-8126-de8c71dd2165)
 
 - **5. Uploading Laboratory Files**  
   Doctors also have the option to upload files containing lab information. This feature simplifies the data input process, allowing for quick and accurate predictions.
 
-  *Screenshot Placeholder*: Insert a screenshot showing the file upload option.
+
+  
 
 - **6. Viewing Prediction Results**  
   Once the data is submitted, the app provides detailed predictions. These results help doctors make informed decisions regarding patient care.
 
-  *Screenshot Placeholder*: Insert a screenshot showing the prediction results.
+  ![Result](https://github.com/user-attachments/assets/4bb19b30-436a-4d4b-8969-461301952d06)
+
 
 ## Contributing
 
