@@ -56,7 +56,7 @@ MediScanAI is a mobile application designed for doctors to predict diseases base
 - **2. Filtering Patients**  
   Doctors can filter patients based on different criteria such as age, gender, or recent visits. This feature helps in managing patient data more efficiently.
 
-  *Screenshot Placeholder*: Insert a screenshot showing the filtering options and results.
+  ![PatientFliter](https://github.com/user-attachments/assets/ff81d28e-8986-48ce-a02a-983e87d392ae)
 
 - **3. Selecting Disease Categories**  
   Navigate through different disease categories to view and select diseases. This organized structure helps in quickly accessing relevant disease information.
