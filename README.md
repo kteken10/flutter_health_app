@@ -78,11 +78,8 @@ All from a single, **user-friendly** platform!
 
 - **Viewing Prediction Results**  
   Once the data is submitted, the app provides detailed predictions. These results help doctors make informed decisions regarding patient care.
-<<<<<<< HEAD
+  
    ![Result](https://github.com/user-attachments/assets/4bb19b30-436a-4d4b-8969-461301952d06)
-=======
- ![Result](https://github.com/user-attachments/assets/4bb19b30-436a-4d4b-8969-461301952d06)
->>>>>>> 9b62e2279f6875cc06e7852fcdcb3d75709f42cf
 
 
 ---
