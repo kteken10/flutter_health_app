@@ -1,4 +1,3 @@
-Voici ton README mis à jour avec les tirets comme demandé, ainsi que les informations pour la **"Webbographie"**, avec l'heure et la date incluse.
 
 ---
 
