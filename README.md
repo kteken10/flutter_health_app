@@ -1,5 +1,3 @@
----
-
 # 🌟 **MediScanAI** 🌟
 
 MediScanAI is a mobile application designed for **doctors** to predict diseases based on clinical data. This app allows healthcare professionals to:
