@@ -52,7 +52,7 @@ MediScanAI is a mobile application designed for doctors to predict diseases base
 - **1. Viewing Patient List**  
   Upon logging in, doctors can access a list of all patients recorded in the system. The list can be filtered using various parameters to quickly find specific patient records.
 
-  *Screenshot Placeholder*: Insert a screenshot showing the patient list screen here.
+  ![Login](https://github.com/user-attachments/assets/dc9c3d73-6a0e-4d33-86cf-ec5b99f62d73)
 
 - **2. Filtering Patients**  
   Doctors can filter patients based on different criteria such as age, gender, or recent visits. This feature helps in managing patient data more efficiently.
