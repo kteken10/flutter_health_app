@@ -4,9 +4,11 @@ import '../model/patient.dart';  // Assure-toi que la classe Patient est bien im
 class AddPatientModal extends StatefulWidget {
   final Function(Patient) onPatientAdded;
 
+  // ignore: use_super_parameters
   const AddPatientModal({Key? key, required this.onPatientAdded}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AddPatientModalState createState() => _AddPatientModalState();
 }
 

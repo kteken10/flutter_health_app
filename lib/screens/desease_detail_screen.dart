@@ -66,8 +66,10 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     );
 
     Future.delayed(const Duration(seconds: 9), () {
+      // ignore: use_build_context_synchronously
       Navigator.of(context, rootNavigator: true).pop();
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
           builder: (context) => const ResultAnalyse(),

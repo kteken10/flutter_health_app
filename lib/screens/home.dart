@@ -75,8 +75,7 @@ class _FirstScreenState extends State<FirstScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: const Color.fromARGB(255, 241, 245, 254), // Assurez-vous que le Container conserve également la couleur
-          width: double.infinity,
+          color: const Color.fromARGB(255, 241, 245, 254), 
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

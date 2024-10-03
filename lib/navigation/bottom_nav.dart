@@ -7,7 +7,6 @@ import 'package:mediscanai/screens/prediction.dart';
 import 'package:mediscanai/screens/settings_screen.dart';
   // Importer le fichier de la modale
 import 'package:mediscanai/model/patient.dart';
-
 import '../data/patients_list.dart';
 import '../ui/add_patient_modal.dart';  // Importer le modèle de patient
 
@@ -15,6 +14,7 @@ class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _BottomNavState createState() => _BottomNavState();
 }
 

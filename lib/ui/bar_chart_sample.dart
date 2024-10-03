@@ -209,6 +209,7 @@ class BarChartSample3State extends State<BarChartSample3> {
   ];
 
   // Methode pour afficher les valeurs au-dessus des barres
+  // ignore: unused_element
   Widget _buildBarLabel(double value, double y, Color color) {
     return Positioned(
       bottom: y + 10, // Ajuste la position de l'étiquette au-dessus de la barre

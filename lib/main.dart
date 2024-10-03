@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MediScanAI',
-      initialRoute: '/login', // L'écran de connexion est le premier affiché
+      initialRoute: '/login', 
       routes: {
         '/login': (context) => const LoginScreen(),
         '/bottomNav': (context) => const BottomNav(),
