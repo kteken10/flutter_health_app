@@ -73,6 +73,7 @@ class _ResultAnalyseState extends State<ResultAnalyse> {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
@@ -102,6 +103,7 @@ class _ResultAnalyseState extends State<ResultAnalyse> {
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Colors.grey.withOpacity(0.3),
                     spreadRadius: 3,
                     blurRadius: 5,

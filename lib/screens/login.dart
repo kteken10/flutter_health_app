@@ -6,9 +6,9 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 class User {
   final String phoneNumber;
   final String password;
-
   User({required this.phoneNumber, required this.password});
 }
+
 
 // Liste de faux utilisateurs avec des numéros camerounais
 List<User> fakeUsers = [
@@ -17,13 +17,14 @@ List<User> fakeUsers = [
   User(phoneNumber: "+237677889900", password: "12345678"),
 ];
 
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-
   @override
   // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
+
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
