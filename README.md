@@ -52,34 +52,40 @@ All from a single, **user-friendly** platform!
    ```bash 
    flutter run
 
-## 💻 Usage
 
-- **Viewing Patient List**  
-  Upon logging in, doctors can access a list of all patients recorded in the system. The list can be filtered using various parameters to quickly find specific patient records.
+## 🧪 App Features Overview
 
-  ![Login](https://github.com/user-attachments/assets/6a501355-f62d-4603-8b70-9f7f2bd26640)
+<p align="center">
+  <kbd>
+    <img src="https://github.com/user-attachments/assets/6a501355-f62d-4603-8b70-9f7f2bd26640" width="300" /><br>
+    <em>Viewing Patient List</em>
+  </kbd>
+  &nbsp;&nbsp;&nbsp;
+  <kbd>
+    <img src="https://github.com/user-attachments/assets/ff81d28e-8986-48ce-a02a-983e87d392ae" width="300" /><br>
+    <em>Filtering Patients</em>
+  </kbd>
+</p>
 
-- **Filtering Patients**  
-  Doctors can filter patients based on different criteria such as age, gender, or recent visits. This feature helps in managing patient data more efficiently.
+<p align="center">
+  <kbd>
+    <img src="https://github.com/user-attachments/assets/fde0e15a-7a96-472e-86a4-976df48613a8" width="300" /><br>
+    <em>Selecting Disease Categories</em>
+  </kbd>
+  &nbsp;&nbsp;&nbsp;
+  <kbd>
+    <img src="https://github.com/user-attachments/assets/79fa45f6-9e33-4fa4-8126-de8c71dd2165" width="300" /><br>
+    <em>Entering Laboratory Data</em>
+  </kbd>
+</p>
 
-    ![PatientFliter](https://github.com/user-attachments/assets/ff81d28e-8986-48ce-a02a-983e87d392ae)
+<p align="center">
+  <kbd>
+    <img src="https://github.com/user-attachments/assets/4bb19b30-436a-4d4b-8969-461301952d06" width="300" /><br>
+    <em>Viewing Prediction Results</em>
+  </kbd>
+</p>
 
-- **Selecting Disease Categories**  
-  Navigate through different disease categories to view and select diseases. This organized structure helps in quickly accessing relevant disease information.
-
-   ![DeseaseCategory](https://github.com/user-attachments/assets/fde0e15a-7a96-472e-86a4-976df48613a8)
-- **Entering Laboratory Data**  
-  After selecting a disease, a form modal will open. Here, doctors can manually enter laboratory results for a tailored prediction.
-
-  ![DeseaseParameter](https://github.com/user-attachments/assets/79fa45f6-9e33-4fa4-8126-de8c71dd2165)
-
-- **Uploading Laboratory Files**  
-  Doctors also have the option to upload files containing lab information. This feature simplifies the data input process, allowing for quick and accurate predictions.
-
-- **Viewing Prediction Results**  
-  Once the data is submitted, the app provides detailed predictions. These results help doctors make informed decisions regarding patient care.
-  
-   ![Result](https://github.com/user-attachments/assets/4bb19b30-436a-4d4b-8969-461301952d06)
 
 
 ---
