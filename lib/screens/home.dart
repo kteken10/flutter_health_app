@@ -51,7 +51,11 @@ class _FirstScreenState extends State<FirstScreen> {
             filteredPatients = patients;
           });
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('${newPatient.name} ajouté avec succès')),
+            SnackBar(
+              content: Text('Patient ${newPatient.name} ajouté avec succès'),
+              duration: const Duration(seconds: 2),
+              behavior: SnackBarBehavior.floating,
+            ),
           );
         },
       ),
@@ -191,7 +195,7 @@ class _FirstScreenState extends State<FirstScreen> {
                         child: PatientCard(
                           name: patient.name,
                           age: patient.age,
-                          status: patient.status,
+                          status: patient.status, // Maintenant contient l'email
                           imageUrl: patient.imageUrl,
                         ),
                       );

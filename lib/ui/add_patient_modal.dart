@@ -4,17 +4,22 @@ import '../model/patient.dart';
 class AddPatientModal extends StatefulWidget {
   final Function(Patient) onPatientAdded;
 
-  const AddPatientModal({Key? key, required this.onPatientAdded}) : super(key: key);
+  const AddPatientModal({super.key, required this.onPatientAdded});
 
   @override
+  // ignore: library_private_types_in_public_api
   _AddPatientModalState createState() => _AddPatientModalState();
 }
 
 class _AddPatientModalState extends State<AddPatientModal> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
-  final TextEditingController _statusController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  bool _isValidEmail(String email) {
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ class _AddPatientModalState extends State<AddPatientModal> {
               ),
               const SizedBox(height: 20),
 
-              // Name
+              // Name Field
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
@@ -60,7 +65,7 @@ class _AddPatientModalState extends State<AddPatientModal> {
               ),
               const SizedBox(height: 16),
 
-              // Date of Birth
+              // Date of Birth Field
               TextFormField(
                 controller: _ageController,
                 decoration: InputDecoration(
@@ -78,24 +83,28 @@ class _AddPatientModalState extends State<AddPatientModal> {
               ),
               const SizedBox(height: 16),
 
-              // Medical Status
+              // Email Field
               TextFormField(
-                controller: _statusController,
+                controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: "Medical status",
+                  labelText: "Email address",
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                  prefixIcon: const Icon(Icons.stacked_line_chart),
+                  prefixIcon: const Icon(Icons.email_outlined),
                 ),
+                keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter medical status';
+                    return 'Please enter email address';
+                  }
+                  if (!_isValidEmail(value)) {
+                    return 'Please enter a valid email';
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 24),
 
-              // Buttons
+              // Action Buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -117,7 +126,7 @@ class _AddPatientModalState extends State<AddPatientModal> {
                         final newPatient = Patient(
                           name: _nameController.text.trim(),
                           age: _ageController.text.trim(),
-                          status: _statusController.text.trim(),
+                          status: _emailController.text.trim(), // Stocke l'email
                           imageUrl: 'assets/default-patient.png',
                         );
                         widget.onPatientAdded(newPatient);
@@ -125,7 +134,7 @@ class _AddPatientModalState extends State<AddPatientModal> {
                       }
                     },
                     child: const Text(
-                      "Add",
+                      "Add Patient",
                       style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
@@ -142,7 +151,7 @@ class _AddPatientModalState extends State<AddPatientModal> {
   void dispose() {
     _nameController.dispose();
     _ageController.dispose();
-    _statusController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 }
