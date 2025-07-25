@@ -5,25 +5,21 @@ import 'package:mediscanai/screens/home.dart';
 import 'package:mediscanai/screens/history_tracking.dart';
 import 'package:mediscanai/screens/prediction.dart';
 import 'package:mediscanai/screens/settings_screen.dart';
-  // Importer le fichier de la modale
 import 'package:mediscanai/model/patient.dart';
-import '../data/patients_list.dart';
-import '../ui/add_patient_modal.dart';  // Importer le modèle de patient
+import 'package:mediscanai/data/patients_list.dart';
+import 'package:mediscanai/ui/add_patient_modal.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _BottomNavState createState() => _BottomNavState();
 }
 
 class _BottomNavState extends State<BottomNav> {
   int _currentPage = 0;
   final PageController _pageController = PageController();
-
-  // Liste des patients
-
+  final String doctorName = "Dr. Smith"; // Nom du médecin par défaut
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +62,7 @@ class _BottomNavState extends State<BottomNav> {
                       height: 20,
                       width: 20,
                     ),
-                    title: const Text('Acceuil'),
+                    title: const Text('Accueil'),
                     activeColor: const Color.fromARGB(255, 23, 92, 210),
                   ),
                   BottomBarItem(
@@ -89,7 +85,7 @@ class _BottomNavState extends State<BottomNav> {
                   ),
                   const BottomBarItem(
                     icon: Icon(Icons.settings),
-                    title: Text('Settings'),
+                    title: Text('Paramètres'),
                     activeColor: Color.fromARGB(255, 23, 92, 210),
                   ),
                 ],
@@ -106,9 +102,32 @@ class _BottomNavState extends State<BottomNav> {
               return AddPatientModal(
                 onPatientAdded: (Patient newPatient) {
                   setState(() {
-                    patients.add(newPatient);  // Ajouter le nouveau patient à la liste
+                    patients.add(newPatient);
                   });
+                  // Notification de succès
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          const Icon(Icons.check_circle, color: Colors.white),
+                          const SizedBox(width: 8),
+                          Text('${newPatient.name} ajouté avec succès'),
+                        ],
+                      ),
+                      duration: const Duration(seconds: 3),
+                      behavior: SnackBarBehavior.floating,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      backgroundColor: const Color.fromARGB(255, 76, 175, 80),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
+                    ),
+                  );
                 },
+                doctorName: doctorName, // Passage du nom du médecin
               );
             },
           );
@@ -127,5 +146,11 @@ class _BottomNavState extends State<BottomNav> {
         child: SizedBox.shrink(),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }

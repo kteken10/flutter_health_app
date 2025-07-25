@@ -9,7 +9,6 @@ class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _FirstScreenState createState() => _FirstScreenState();
 }
 
@@ -17,6 +16,7 @@ class _FirstScreenState extends State<FirstScreen> {
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   List<Patient> filteredPatients = [];
+  final String doctorName = "Dr. Smith"; // Nom du docteur à passer à la modal
 
   @override
   void initState() {
@@ -50,14 +50,30 @@ class _FirstScreenState extends State<FirstScreen> {
             patients.add(newPatient);
             filteredPatients = patients;
           });
+          
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Patient ${newPatient.name} ajouté avec succès'),
-              duration: const Duration(seconds: 2),
+              content: Row(
+                children: [
+                  const Icon(Icons.check_circle, color: Colors.white),
+                  const SizedBox(width: 8),
+                  Text('${newPatient.name} a été ajouté avec succès'),
+                ],
+              ),
+              duration: const Duration(seconds: 3),
               behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              backgroundColor: const Color.fromARGB(255, 76, 175, 80),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
             ),
           );
         },
+        doctorName: doctorName, // Passage du nom du docteur à la modal
       ),
     );
   }
@@ -195,7 +211,7 @@ class _FirstScreenState extends State<FirstScreen> {
                         child: PatientCard(
                           name: patient.name,
                           age: patient.age,
-                          status: patient.status, // Maintenant contient l'email
+                          status: patient.status,
                           imageUrl: patient.imageUrl,
                         ),
                       );
