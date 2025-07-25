@@ -3,6 +3,7 @@ import '../data/patients_list.dart';
 import '../model/patient.dart';
 import '../ui/card.dart';
 import '../ui/patient.dart';
+import '../ui/add_patient_modal.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
@@ -15,18 +16,18 @@ class FirstScreen extends StatefulWidget {
 class _FirstScreenState extends State<FirstScreen> {
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
-  List<Patient> filteredPatients = []; // Liste des patients filtrés
+  List<Patient> filteredPatients = [];
 
   @override
   void initState() {
     super.initState();
-    filteredPatients = patients; // Initialiser la liste des patients filtrés avec tous les patients
-    _searchController.addListener(_filterPatients); // Ajouter un listener pour la recherche
+    filteredPatients = patients;
+    _searchController.addListener(_filterPatients);
   }
 
   @override
   void dispose() {
-    _searchController.removeListener(_filterPatients); // Supprimer le listener lors de la suppression du widget
+    _searchController.removeListener(_filterPatients);
     _searchController.dispose();
     super.dispose();
   }
@@ -40,11 +41,28 @@ class _FirstScreenState extends State<FirstScreen> {
     });
   }
 
+  void _showAddPatientDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AddPatientModal(
+        onPatientAdded: (newPatient) {
+          setState(() {
+            patients.add(newPatient);
+            filteredPatients = patients;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('${newPatient.name} ajouté avec succès')),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true, // Pour éviter le problème de BottomOverflowed
-      backgroundColor: const Color.fromARGB(255, 241, 245, 254), // Appliquer la couleur à tout l'arrière-plan
+      resizeToAvoidBottomInset: true,
+      backgroundColor: const Color.fromARGB(255, 241, 245, 254),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 241, 245, 254),
         title: CircleAvatar(
@@ -64,8 +82,7 @@ class _FirstScreenState extends State<FirstScreen> {
             backgroundColor: Colors.white,
             radius: 22,
             child: IconButton(
-              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 132, 177, 254)
-),
+              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 132, 177, 254)),
               onPressed: () {},
             ),
           ),
@@ -73,9 +90,14 @@ class _FirstScreenState extends State<FirstScreen> {
         ],
         elevation: 0,
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 132, 177, 254),
+        onPressed: () => _showAddPatientDialog(context),
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
       body: SingleChildScrollView(
         child: Container(
-          color: const Color.fromARGB(255, 241, 245, 254), 
+          color: const Color.fromARGB(255, 241, 245, 254),
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +113,7 @@ class _FirstScreenState extends State<FirstScreen> {
               const Row(
                 children: [
                   Expanded(
-                    child: CustomCard(), // Utilisation du widget personnalisé ici
+                    child: CustomCard(),
                   ),
                 ],
               ),
@@ -101,8 +123,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   const Text(
                     'Patients',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 132, 177, 254)
-,
+                      color: Color.fromARGB(255, 132, 177, 254),
                       fontSize: 25,
                       fontWeight: FontWeight.normal,
                     ),
@@ -119,17 +140,15 @@ class _FirstScreenState extends State<FirstScreen> {
                             child: TextField(
                               controller: _searchController,
                               decoration: InputDecoration(
-                                 focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12.0)), // Bordures arrondies
-                      borderSide: BorderSide(color: Color.fromARGB(255, 132, 177, 254)
-), // Bordure bleue quand le champ est en focus
-                    ),
-                  
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12.0)), // Bordures arrondies
-                      borderSide: BorderSide(color: Colors.white), // Bordure blanche quand le champ n'est pas en focus
-                    ),
-                                hintText: '...',
+                                focusedBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 132, 177, 254)),
+                                ),
+                                enabledBorder: const OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                hintText: 'Search by name...',
                                 fillColor: Colors.white,
                                 filled: true,
                                 border: OutlineInputBorder(
@@ -146,8 +165,7 @@ class _FirstScreenState extends State<FirstScreen> {
                     backgroundColor: Colors.white,
                     radius: 22,
                     child: IconButton(
-                      icon: const Icon(Icons.search, color: Color.fromARGB(255, 132, 177, 254)
-),
+                      icon: const Icon(Icons.search, color: Color.fromARGB(255, 132, 177, 254)),
                       onPressed: () {
                         setState(() {
                           _isSearching = !_isSearching;
@@ -160,15 +178,16 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 16),
               SizedBox(
-                height: 150, // Hauteur des cartes, ajustez si nécessaire
+                height: 150,
                 child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal, // Défilement horizontal
+                  scrollDirection: Axis.horizontal,
                   child: Row(
                     children: filteredPatients.map((patient) {
                       return Container(
-                        width: MediaQuery.of(context).size.width * 0.65, // Chaque carte prend 65% de la largeur de l'écran
-                        margin: const EdgeInsets.only(right: 10), // Espacement entre les cartes
+                        width: MediaQuery.of(context).size.width * 0.65,
+                        margin: const EdgeInsets.only(right: 10),
                         child: PatientCard(
                           name: patient.name,
                           age: patient.age,
@@ -180,7 +199,6 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 ),
               ),
-              // Vos autres éléments ici
             ],
           ),
         ),
@@ -188,6 +206,3 @@ class _FirstScreenState extends State<FirstScreen> {
     );
   }
 }
-
-
-

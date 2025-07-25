@@ -15,7 +15,7 @@ dependencies:
   expansion_tile_card: ^3.0.0
   shared_preferences: ^2.0.8
   intl_phone_number_input: ^0.7.4
-  font_awesome_flutter: ^10.1.0
+  font_awesome_flutter: ^10.8.0
   fl_chart: ^0.69.0
   audioplayers: ^6.1.0
   # The following adds the Cupertino Icons font to your application.
@@ -41,30 +41,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/brain.svg
-    - assets/home.svg
-    - assets/history.svg
-    - assets/girl-doc.png
-    - assets/black-doc.png
-    - assets/robot.png
-    - assets/chemestry.png
-    - assets/sigar-man.jpg
-    - assets/happy-man.jpg
-    - assets/wow-man.jpg
-    - assets/cardio.png
-    - assets/virus.png
-    - assets/brain.png
-    - assets/mediAi.png
-    - assets/mediAiSchool.png
-    - assets/gluco-test.png
-    - assets/obesite.png
-    - assets/diabete.png
-    - assets/ia_robot.gif
-    - assets/ia_robot_result.mp3
-    - assets/Assou-patient.png
-    - assets/Hiv.png
-    - assets/covid.png
-    - assets/hypertension.png
+    - assets/
+    
 
 
 

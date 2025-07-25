@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import '../model/patient.dart';  // Assure-toi que la classe Patient est bien importée.
+import '../model/patient.dart';
 
 class AddPatientModal extends StatefulWidget {
   final Function(Patient) onPatientAdded;
 
-  // ignore: use_super_parameters
   const AddPatientModal({Key? key, required this.onPatientAdded}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _AddPatientModalState createState() => _AddPatientModalState();
 }
 
@@ -16,50 +14,135 @@ class _AddPatientModalState extends State<AddPatientModal> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _statusController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text("Ajouter un patient"),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(
-            controller: _nameController,
-            decoration: const InputDecoration(labelText: "Nom du patient"),
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      backgroundColor: Colors.white,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.person_add_alt_1_rounded, size: 50, color: Color.fromARGB(255, 132, 177, 254)),
+              const SizedBox(height: 10),
+              const Text(
+                "Add a Patient",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 5),
+              const Text(
+                "Please fill in the information below",
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+
+              // Name
+              TextFormField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  labelText: "Patient name",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.person_outline),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter patient name';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Date of Birth
+              TextFormField(
+                controller: _ageController,
+                decoration: InputDecoration(
+                  labelText: "Date of birth (dd/mm/yyyy)",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.calendar_today_outlined),
+                ),
+                keyboardType: TextInputType.datetime,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter date of birth';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Medical Status
+              TextFormField(
+                controller: _statusController,
+                decoration: InputDecoration(
+                  labelText: "Medical status",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.stacked_line_chart),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter medical status';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24),
+
+              // Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 132, 177, 254),
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        final newPatient = Patient(
+                          name: _nameController.text.trim(),
+                          age: _ageController.text.trim(),
+                          status: _statusController.text.trim(),
+                          imageUrl: 'assets/default-patient.png',
+                        );
+                        widget.onPatientAdded(newPatient);
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: const Text(
+                      "Add",
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          TextField(
-            controller: _ageController,
-            decoration: const InputDecoration(labelText: "Date de naissance"),
-          ),
-          TextField(
-            controller: _statusController,
-            decoration: const InputDecoration(labelText: "Statut"),
-          ),
-        ],
+        ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();  // Ferme la modale si on annule
-          },
-          child: const Text("Annuler"),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            // Créer un nouveau patient
-            final newPatient = Patient(
-              name: _nameController.text,
-              age: _ageController.text,
-              status: _statusController.text,
-              imageUrl: 'assets/default-patient.png', // Utilise une image par défaut pour le patient
-            );
-            widget.onPatientAdded(newPatient);  // Ajoute le patient à la liste
-            Navigator.of(context).pop();  // Ferme la modale après ajout
-          },
-          child: const Text("Ajouter"),
-        ),
-      ],
     );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _ageController.dispose();
+    _statusController.dispose();
+    super.dispose();
   }
 }

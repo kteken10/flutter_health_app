@@ -26,7 +26,7 @@ class PatientCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0), // Bordures arrondies
         ),
-        elevation: 2.0, // Élévation pour un léger effet d'ombre
+        elevation: 0, // Élévation pour un léger effet d'ombre
         child: Padding(
           padding: const EdgeInsets.all(8.0), // Ajout d'une marge intérieure
           child: Row(

@@ -31,7 +31,7 @@ class DiseaseCardWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0), // Padding vertical
         child: Card(
-          elevation: 4.0,
+          elevation: 0,
           child: Column(
             children: [
               Expanded(

@@ -125,7 +125,7 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
               width: double.infinity,
               child: Card(
                 color: Colors.white,
-                elevation: 5,
+                elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0),
                 ),
@@ -157,15 +157,7 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16.0),
-                boxShadow: [
-                  BoxShadow(
-                    // ignore: deprecated_member_use
-                    color: Colors.grey.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+              
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

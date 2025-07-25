@@ -15,6 +15,7 @@ List<User> fakeUsers = [
   User(phoneNumber: "+237697645415", password: "12345678"),
   User(phoneNumber: "+237655604000", password: "12345678"),
   User(phoneNumber: "+237677889900", password: "12345678"),
+   User(phoneNumber: "+237690095575", password: "12345678"),
 ];
 
 

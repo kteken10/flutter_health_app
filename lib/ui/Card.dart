@@ -8,6 +8,7 @@ class CustomCard extends StatelessWidget {
       height: 212,
       child: Card(
         color: Colors.white,
+        elevation: 0,
         margin: EdgeInsets.zero,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
