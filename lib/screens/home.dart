@@ -4,11 +4,13 @@ import '../model/patient.dart';
 import '../ui/card.dart';
 import '../ui/patient.dart';
 import '../ui/add_patient_modal.dart';
+import 'prediction.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _FirstScreenState createState() => _FirstScreenState();
 }
 
@@ -16,7 +18,7 @@ class _FirstScreenState extends State<FirstScreen> {
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   List<Patient> filteredPatients = [];
-  final String doctorName = "Dr. Smith"; // Nom du docteur à passer à la modal
+  final String doctorName = "Dr. Smith";
 
   @override
   void initState() {
@@ -73,7 +75,20 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
           );
         },
-        doctorName: doctorName, // Passage du nom du docteur à la modal
+        doctorName: doctorName,
+      ),
+    );
+  }
+
+  void _navigateToPredictionScreen(BuildContext context, Patient patient) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PredictionScreen(
+          patientEmail: patient.status, // email du patient
+          patientName: patient.name,
+          doctorName: doctorName,
+        ),
       ),
     );
   }
@@ -213,6 +228,7 @@ class _FirstScreenState extends State<FirstScreen> {
                           age: patient.age,
                           status: patient.status,
                           imageUrl: patient.imageUrl,
+                          onTap: () => _navigateToPredictionScreen(context, patient),
                         ),
                       );
                     }).toList(),

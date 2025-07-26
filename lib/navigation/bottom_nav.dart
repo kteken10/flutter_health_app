@@ -19,7 +19,19 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
   int _currentPage = 0;
   final PageController _pageController = PageController();
-  final String doctorName = "Dr. Smith"; // Nom du médecin par défaut
+  final String doctorName = "Dr. Smith";
+
+  // Liste des écrans pour la navigation
+  final List<Widget> _screens = [
+    const FirstScreen(),
+    const PredictionScreen(
+      patientEmail: "",
+      patientName: "",
+      doctorName: "Dr. Smith",
+    ),
+    const HistoryTrackingScreen(),
+    const SettingsScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +39,18 @@ class _BottomNavState extends State<BottomNav> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
+          /// APPROCHE 1: Avec PageView (décommentez cette section)
           PageView(
             controller: _pageController,
-            children: const [
-              FirstScreen(),
-              PredictionScreen(),
-              HistoryTrackingScreen(),
-              SettingsScreen(),
-            ],
+            children: _screens,
             onPageChanged: (index) {
               setState(() => _currentPage = index);
             },
           ),
+
+       
+
+          // Barre de navigation en bas
           Positioned(
             bottom: 16,
             left: 16,
@@ -47,103 +59,129 @@ class _BottomNavState extends State<BottomNav> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  ),
+                ],
               ),
               child: BottomBar(
                 backgroundColor: Colors.transparent,
                 selectedIndex: _currentPage,
                 onTap: (int index) {
-                  _pageController.jumpToPage(index);
+                  /// APPROCHE 1: Avec PageView
+                  // _pageController.jumpToPage(index);
+                  
+                  /// APPROCHE 2: Avec navigation manuelle
                   setState(() => _currentPage = index);
                 },
-                items: <BottomBarItem>[
-                  BottomBarItem(
-                    icon: SvgPicture.asset(
-                      'assets/home.svg',
-                      height: 20,
-                      width: 20,
-                    ),
-                    title: const Text('Accueil'),
-                    activeColor: const Color.fromARGB(255, 23, 92, 210),
-                  ),
-                  BottomBarItem(
-                    icon: SvgPicture.asset(
-                      'assets/brain.svg',
-                      height: 24,
-                      width: 24,
-                    ),
-                    title: const Text('Prédictions'),
-                    activeColor: const Color.fromARGB(255, 23, 92, 210),
-                  ),
-                  BottomBarItem(
-                    icon: SvgPicture.asset(
-                      'assets/history.svg',
-                      height: 24,
-                      width: 24,
-                    ),
-                    title: const Text('Historique'),
-                    activeColor: const Color.fromARGB(255, 23, 92, 210),
-                  ),
-                  const BottomBarItem(
-                    icon: Icon(Icons.settings),
-                    title: Text('Paramètres'),
-                    activeColor: Color.fromARGB(255, 23, 92, 210),
-                  ),
-                ],
+                items: _buildBottomBarItems(),
               ),
             ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AddPatientModal(
-                onPatientAdded: (Patient newPatient) {
-                  setState(() {
-                    patients.add(newPatient);
-                  });
-                  // Notification de succès
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Row(
-                        children: [
-                          const Icon(Icons.check_circle, color: Colors.white),
-                          const SizedBox(width: 8),
-                          Text('${newPatient.name} ajouté avec succès'),
-                        ],
-                      ),
-                      duration: const Duration(seconds: 3),
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      backgroundColor: const Color.fromARGB(255, 76, 175, 80),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 14,
-                      ),
-                    ),
-                  );
-                },
-                doctorName: doctorName, // Passage du nom du médecin
-              );
-            },
-          );
-        },
-        backgroundColor: const Color.fromARGB(255, 132, 177, 254),
-        foregroundColor: Colors.white,
-        elevation: 6,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(28)),
-        ),
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: _buildFloatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomSheet: const Padding(
-        padding: EdgeInsets.only(bottom: 110.0),
-        child: SizedBox.shrink(),
+    );
+  }
+
+  List<BottomBarItem> _buildBottomBarItems() {
+    return [
+      BottomBarItem(
+        icon: SvgPicture.asset(
+          'assets/home.svg',
+          height: 20,
+          width: 20,
+          color: _currentPage == 0 
+              ? const Color.fromARGB(255, 23, 92, 210)
+              : Colors.grey,
+        ),
+        title: const Text('Accueil'),
+        activeColor: const Color.fromARGB(255, 23, 92, 210),
+      ),
+      BottomBarItem(
+        icon: SvgPicture.asset(
+          'assets/brain.svg',
+          height: 24,
+          width: 24,
+          color: _currentPage == 1
+              ? const Color.fromARGB(255, 23, 92, 210)
+              : Colors.grey,
+        ),
+        title: const Text('Prédictions'),
+        activeColor: const Color.fromARGB(255, 23, 92, 210),
+      ),
+      BottomBarItem(
+        icon: SvgPicture.asset(
+          'assets/history.svg',
+          height: 24,
+          width: 24,
+          color: _currentPage == 2
+              ? const Color.fromARGB(255, 23, 92, 210)
+              : Colors.grey,
+        ),
+        title: const Text('Historique'),
+        activeColor: const Color.fromARGB(255, 23, 92, 210),
+      ),
+      BottomBarItem(
+        icon: Icon(
+          Icons.settings,
+          color: _currentPage == 3
+              ? const Color.fromARGB(255, 23, 92, 210)
+              : Colors.grey,
+        ),
+        title: const Text('Paramètres'),
+        activeColor: const Color.fromARGB(255, 23, 92, 210),
+      ),
+    ];
+  }
+
+  FloatingActionButton _buildFloatingActionButton() {
+    return FloatingActionButton(
+      onPressed: () => _showAddPatientDialog(context),
+      backgroundColor: const Color.fromARGB(255, 132, 177, 254),
+      foregroundColor: Colors.white,
+      elevation: 6,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
+      child: const Icon(Icons.add),
+    );
+  }
+
+  void _showAddPatientDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AddPatientModal(
+        onPatientAdded: (Patient newPatient) {
+          setState(() => patients.add(newPatient));
+          _showSuccessSnackbar(context, newPatient.name);
+        },
+        doctorName: doctorName,
+      ),
+    );
+  }
+
+  void _showSuccessSnackbar(BuildContext context, String patientName) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.check_circle, color: Colors.white),
+            const SizedBox(width: 8),
+            Text('$patientName ajouté avec succès'),
+          ],
+        ),
+        duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        backgroundColor: const Color.fromARGB(255, 76, 175, 80),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
     );
   }
