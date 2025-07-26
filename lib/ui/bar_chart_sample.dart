@@ -2,104 +2,199 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class BarChartSample3 extends StatefulWidget {
-  const BarChartSample3({super.key});
+  final String diseaseName;
+  final Map<String, double>? customValues;
+
+  const BarChartSample3({
+    super.key,
+    required this.diseaseName,
+    this.customValues,
+  });
 
   @override
-  State<StatefulWidget> createState() => BarChartSample3State();
+  State<BarChartSample3> createState() => _BarChartSample3State();
 }
 
-class BarChartSample3State extends State<BarChartSample3> {
+class _BarChartSample3State extends State<BarChartSample3> {
+  late List<BarChartGroupData> barGroups;
+  late double maxY;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeChartData();
+  }
+
+  void _initializeChartData() {
+    if (widget.diseaseName.toLowerCase() == 'hypertension') {
+      // Données pour l'hypertension
+      barGroups = [
+        _buildBarGroup(0, 'Systolique', widget.customValues?['systolic'] ?? 120),
+        _buildBarGroup(1, 'Diastolique', widget.customValues?['diastolic'] ?? 80),
+        _buildBarGroup(2, 'Cholestérol', widget.customValues?['cholesterol'] ?? 180),
+        _buildBarGroup(3, 'IMC', widget.customValues?['bmi'] ?? 25),
+        _buildBarGroup(4, 'Âge', widget.customValues?['age'] ?? 45),
+      ];
+      maxY = 200;
+    } else {
+      // Données par défaut (diabète)
+      barGroups = [
+        _buildBarGroup(0, 'Glucose', widget.customValues?['glucose'] ?? 148),
+        _buildBarGroup(1, 'Pression', widget.customValues?['bp'] ?? 72),
+        _buildBarGroup(2, 'Insuline', widget.customValues?['insulin'] ?? 0),
+        _buildBarGroup(3, 'IMC', widget.customValues?['bmi'] ?? 33.6),
+        _buildBarGroup(4, 'Âge', widget.customValues?['age'] ?? 50),
+      ];
+      maxY = 200;
+    }
+  }
+
+  BarChartGroupData _buildBarGroup(int x, String label, double value) {
+    final color = _getColorForValue(label, value);
+    return BarChartGroupData(
+      x: x,
+      barRods: [
+        BarChartRodData(
+          toY: value,
+          color: color,
+          width: 22,
+          borderRadius: BorderRadius.circular(4),
+          backDrawRodData: BackgroundBarChartRodData(
+            show: true,
+            toY: maxY,
+            color: Colors.grey[200],
+          ),
+        )
+      ],
+      showingTooltipIndicators: [0],
+    );
+  }
+
+  Color _getColorForValue(String label, double value) {
+    if (widget.diseaseName.toLowerCase() == 'hypertension') {
+      if (label == 'Systolique') {
+        return value >= 140 ? Colors.red : value >= 130 ? Colors.orange : Colors.blue;
+      } else if (label == 'Diastolique') {
+        return value >= 90 ? Colors.red : value >= 85 ? Colors.orange : Colors.blue;
+      } else if (label == 'Cholestérol') {
+        return value >= 240 ? Colors.red : value >= 200 ? Colors.orange : Colors.blue;
+      } else if (label == 'IMC') {
+        return value >= 30 ? Colors.red : value >= 25 ? Colors.orange : Colors.blue;
+      }
+    } else { // Diabète
+      if (label == 'Glucose') {
+        return value >= 126 ? Colors.red : value >= 100 ? Colors.orange : Colors.blue;
+      } else if (label == 'Pression') {
+        return value >= 80 ? Colors.red : value >= 75 ? Colors.orange : Colors.blue;
+      }
+    }
+    return Colors.blue;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,  // Définir une hauteur fixe
-      child: BarChart(
-        BarChartData(
-          barTouchData: barTouchData,
-          titlesData: titlesData,
-          borderData: borderData,
-          barGroups: barGroups,
-          gridData: const FlGridData(show: false),
-          alignment: BarChartAlignment.spaceAround,
-          maxY: 200,  // Ajuster selon les valeurs maximales de tes données
-        ),
+    return BarChart(
+      BarChartData(
+        barTouchData: _barTouchData,
+        titlesData: _titlesData,
+        borderData: FlBorderData(show: false),
+        barGroups: barGroups,
+        gridData: const FlGridData(show: false),
+        alignment: BarChartAlignment.spaceAround,
+        maxY: maxY,
       ),
     );
   }
 
-  BarTouchData get barTouchData => BarTouchData(
-    enabled: false,
+  BarTouchData get _barTouchData => BarTouchData(
+    enabled: true,
     touchTooltipData: BarTouchTooltipData(
-      getTooltipColor: (group) => Colors.transparent,
-      tooltipPadding: EdgeInsets.zero,
-      tooltipMargin: 8,
-      getTooltipItem: (
-        BarChartGroupData group,
-        int groupIndex,
-        BarChartRodData rod,
-        int rodIndex,
-      ) {
+    
+      getTooltipItem: (group, groupIndex, rod, rodIndex) {
+        final label = _getLabel(group.x.toInt());
         return BarTooltipItem(
-          rod.toY.round().toString(),
+          '$label: ${rod.toY.toStringAsFixed(1)}\n',
           const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
+          children: [
+            TextSpan(
+              text: _getRangeText(label, rod.toY),
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 12,
+              ),
+            ),
+          ],
         );
       },
     ),
   );
 
-  Widget getTitles(double value, TitleMeta meta) {
-    const style = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
-    );
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = 'Preg';
-        break;
-      case 1:
-        text = 'Glucose';
-        break;
-      case 2:
-        text = 'BP';
-        break;
-      case 3:
-        text = 'Skin';
-        break;
-      case 4:
-        text = 'Insulin';
-        break;
-      case 5:
-        text = 'BMI';
-        break;
-      case 6:
-        text = 'DPF';
-        break;
-      case 7:
-        text = 'Age';
-        break;
-      default:
-        text = '';
-        break;
+  String _getLabel(int index) {
+    if (widget.diseaseName.toLowerCase() == 'hypertension') {
+      switch (index) {
+        case 0: return 'P. Systolique';
+        case 1: return 'P. Diastolique';
+        case 2: return 'Cholestérol';
+        case 3: return 'IMC';
+        case 4: return 'Âge';
+        default: return '';
+      }
+    } else {
+      switch (index) {
+        case 0: return 'Glucose';
+        case 1: return 'Pression';
+        case 2: return 'Insuline';
+        case 3: return 'IMC';
+        case 4: return 'Âge';
+        default: return '';
+      }
     }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 4,
-      child: Text(text, style: style),
-    );
   }
 
-  FlTitlesData get titlesData => FlTitlesData(
+  String _getRangeText(String label, double value) {
+    if (widget.diseaseName.toLowerCase() == 'hypertension') {
+      if (label.contains('Systolique')) {
+        if (value >= 140) return '(Élevée)';
+        if (value >= 130) return '(Normale haute)';
+        return '(Normale)';
+      } else if (label.contains('Diastolique')) {
+        if (value >= 90) return '(Élevée)';
+        if (value >= 85) return '(Normale haute)';
+        return '(Normale)';
+      }
+    } else {
+      if (label == 'Glucose') {
+        if (value >= 126) return '(Élevé)';
+        if (value >= 100) return '(Prédiabète)';
+        return '(Normal)';
+      }
+    }
+    return '';
+  }
+
+  FlTitlesData get _titlesData => FlTitlesData(
     show: true,
     bottomTitles: AxisTitles(
       sideTitles: SideTitles(
         showTitles: true,
         reservedSize: 40,
-        getTitlesWidget: getTitles,
+        getTitlesWidget: (value, meta) {
+          final label = _getLabel(value.toInt());
+          return Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              label,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
+        },
       ),
     ),
     leftTitles: const AxisTitles(
@@ -112,114 +207,4 @@ class BarChartSample3State extends State<BarChartSample3> {
       sideTitles: SideTitles(showTitles: false),
     ),
   );
-
-  FlBorderData get borderData => FlBorderData(
-    show: false,
-  );
-
-  List<BarChartGroupData> get barGroups => [
-    BarChartGroupData(
-      x: 0,
-      barRods: [
-        BarChartRodData(
-          toY: 6,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 1,
-      barRods: [
-        BarChartRodData(
-          toY: 148,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 2,
-      barRods: [
-        BarChartRodData(
-          toY: 72,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 3,
-      barRods: [
-        BarChartRodData(
-          toY: 35,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 4,
-      barRods: [
-        BarChartRodData(
-          toY: 0,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 5,
-      barRods: [
-        BarChartRodData(
-          toY: 33.6,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 6,
-      barRods: [
-        BarChartRodData(
-          toY: 0.627,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-    BarChartGroupData(
-      x: 7,
-      barRods: [
-        BarChartRodData(
-          toY: 50,
-          color: Colors.blue,
-          width: 16,
-          borderRadius: BorderRadius.zero,
-        )
-      ],
-    ),
-  ];
-
-  // Methode pour afficher les valeurs au-dessus des barres
-  // ignore: unused_element
-  Widget _buildBarLabel(double value, double y, Color color) {
-    return Positioned(
-      bottom: y + 10, // Ajuste la position de l'étiquette au-dessus de la barre
-      child: Text(
-        value.toString(),
-        style: TextStyle(
-          color: color,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
 }

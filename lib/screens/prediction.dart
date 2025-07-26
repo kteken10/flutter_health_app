@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import '../ui/category_card_widget.dart';
 import '../ui/disease_card.dart';
 
-
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _PredictionScreenState createState() => _PredictionScreenState();
 }
 
@@ -25,14 +23,21 @@ class _PredictionScreenState extends State<PredictionScreen> {
         {
           'name': 'Obesite',
           'imagePath': 'assets/obesite.png',
-           'description': 'L’obésité est une maladie caractérisée par une accumulation excessive de graisse corporelle.',
+          'description': 'L\'obésité est une maladie caractérisée par une accumulation excessive de graisse corporelle.',
         },
       ]
     },
     {
       'title': 'Cardio',
       'imagePath': 'assets/cardio.png',
-      'diseases': []
+      'diseases': [
+        {
+          'name': 'Hypertension',
+          'imagePath': 'assets/hypertension.png', // Assurez-vous d'avoir cette image dans vos assets
+          'description': 'L\'hypertension artérielle est une pathologie cardiovasculaire définie par une pression artérielle trop élevée.',
+        },
+        // Vous pouvez ajouter d'autres maladies cardio-vasculaires ici
+      ]
     },
     {
       'title': 'Brain',
@@ -42,19 +47,18 @@ class _PredictionScreenState extends State<PredictionScreen> {
     {
       'title': 'Infectious',
       'imagePath': 'assets/virus.png',
-     'diseases': [
-  {
-    'name': 'Covid-19',
-    'imagePath': 'assets/covid.png',
-    'description': 'Le Covid-19 est une maladie respiratoire causée par le virus SARS-CoV-2. Il se transmet principalement par les gouttelettes respiratoires et peut provoquer des symptômes allant de légers à sévères, tels que la fièvre, la toux, et la difficulté respiratoire.',
-  },
-  {
-    'name': 'HIV',
-    'imagePath': 'assets/Hiv.png',
-    'description': 'Le VIH (Virus de l\'Immunodéficience Humaine) est un virus qui attaque le système immunitaire, affaiblissant la capacité du corps à combattre les infections. Si non traité, il peut mener au SIDA (Syndrome d\'Immunodéficience Acquise).',
-  },
-]
-
+      'diseases': [
+        {
+          'name': 'Covid-19',
+          'imagePath': 'assets/covid.png',
+          'description': 'Le Covid-19 est une maladie respiratoire causée par le virus SARS-CoV-2.',
+        },
+        {
+          'name': 'HIV',
+          'imagePath': 'assets/Hiv.png',
+          'description': 'Le VIH est un virus qui attaque le système immunitaire.',
+        },
+      ]
     },
   ];
 
@@ -196,17 +200,11 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   itemCount: _categories[_selectedCategoryIndex]['diseases'].length,
                   itemBuilder: (context, index) {
                     final disease = _categories[_selectedCategoryIndex]['diseases'][index];
-                    
-                    // Vérifie que la maladie n'est pas vide
-                    if (disease['name'].isNotEmpty) {
-                      return DiseaseCardWidget(
-                        name: disease['name'],
-                        imagePath: disease['imagePath'],
-                        description: disease['description'],
-                      );
-                    } else {
-                      return const SizedBox(); // Si la maladie est vide, retourne un widget vide
-                    }
+                    return DiseaseCardWidget(
+                      name: disease['name'],
+                      imagePath: disease['imagePath'],
+                      description: disease['description'],
+                    );
                   },
                 ),
               ),

@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../ui/result_analyse.dart';
 import '../ui/parameter_widget.dart';
-import '../ui/lab_section.dart'; // Assurez-vous que ce fichier est importé
+import '../ui/lab_section.dart';
 
 class DiseaseDetailScreen extends StatefulWidget {
   final String name;
   final String imagePath;
-  final String description; // Ajouté pour la description de la maladie
+  final String description;
 
   const DiseaseDetailScreen({
     required this.name,
     required this.imagePath,
-    required this.description, // Ajouté pour la description de la maladie
+    required this.description,
     super.key,
   });
 
   @override
-  // ignore: library_private_types_in_public_api
   _DiseaseDetailScreenState createState() => _DiseaseDetailScreenState();
 }
 
-class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
+class _DiseaseDetailScreenState extends State<DiseaseDetailScreen> 
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
@@ -32,9 +30,9 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
   void initState() {
     super.initState();
     _controller = AnimationController(
-  duration: const Duration(seconds: 1),
-  vsync: this,  // Add this line to fix the issue
-)..repeat(reverse: true);
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    )..repeat(reverse: true);
 
     _scaleAnimation = Tween<double>(begin: 0.9, end: 1.1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
@@ -56,7 +54,7 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Analyse en cours'),
+          title: Text('Analyse pour ${widget.name}'),
           content: SizedBox(
             width: double.maxFinite,
             child: Image.asset('assets/ia_robot.gif'),
@@ -66,138 +64,31 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
     );
 
     Future.delayed(const Duration(seconds: 9), () {
-      // ignore: use_build_context_synchronously
       Navigator.of(context, rootNavigator: true).pop();
       Navigator.pushReplacement(
-        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-          builder: (context) => const ResultAnalyse(),
+          builder: (context) => ResultAnalyse(diseaseName: widget.name),
         ),
       );
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: const Color.fromARGB(255, 241, 245, 254),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 241, 245, 254),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 22,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-        ),
-       
-        centerTitle: true,
-        actions: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 22,
-            child: IconButton(
-              icon: const Icon(Icons.menu, color: Color.fromARGB(255, 132, 177, 254)),
-              onPressed: () {
-                // Action du menu
-              },
-            ),
-          ),
-          const SizedBox(width: 16),
-        ],
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          // Image de la maladie
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: SizedBox(
-              height: 200,
-              width: double.infinity,
-              child: Card(
-                color: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16.0),
-                        child: Image.asset(
-                          widget.imagePath,
-                          fit: BoxFit.cover,
-                          width: 140,
-                          height: 176,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          // Description de la maladie
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16.0),
-              
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.name,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    widget.description, // Utilisation de la description passée en paramètre
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black87,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          // Ligne de laboratoire avec icône d'analyse animée au milieu
-          LabSection(
-            onTap: _showModal,
-            controller: _controller,
-            scaleAnimation: _scaleAnimation,
-            colorAnimation: _colorAnimation,
-          ),
-          // Paramètres de santé avec effet de défilement
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: const SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ParameterWidget(
+  Widget _buildDiseaseSpecificParameters() {
+    switch (widget.name.toLowerCase()) {
+      case 'diabete':
+        return _buildDiabetesParameters();
+      case 'hypertension':
+        return _buildHypertensionParameters();
+      default:
+        return _buildDefaultParameters();
+    }
+  }
+
+  Widget _buildDiabetesParameters() {
+    return const Column(
+      children: [
+        ParameterWidget(
                       icon: Icons.donut_large, // Icône pour Pregnancies
                       parameterName: 'Pregnancies',
                       unit: 'times',
@@ -237,8 +128,175 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
                       parameterName: 'Age',
                       unit: 'years',
                     ),
-                  ],
+      ],
+    );
+  }
+
+  Widget _buildHypertensionParameters() {
+    return const Column(
+      children: [
+        ParameterWidget(
+          icon: FontAwesomeIcons.heartPulse,
+          parameterName: 'Pression artérielle systolique',
+          unit: 'mm Hg',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.heartPulse,
+          parameterName: 'Pression artérielle diastolique',
+          unit: 'mm Hg',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.weightScale,
+          parameterName: 'IMC',
+          unit: 'kg/m²',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.drumstickBite,
+          parameterName: 'Cholestérol total',
+          unit: 'mg/dL',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.wineBottle,
+          parameterName: 'Consommation d\'alcool',
+          unit: 'verres/semaine',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.smoking,
+          parameterName: 'Tabagisme',
+          unit: 'paquets/année',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.running,
+          parameterName: 'Activité physique',
+          unit: 'heures/semaine',
+        ),
+        ParameterWidget(
+          icon: FontAwesomeIcons.cakeCandles,
+          parameterName: 'Âge',
+          unit: 'ans',
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDefaultParameters() {
+    return const Column(
+      children: [
+        ParameterWidget(
+          icon: Icons.help_outline,
+          parameterName: 'Paramètres généraux',
+          unit: '',
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: const Color.fromARGB(255, 241, 245, 254),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 241, 245, 254),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 22,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+        ),
+        title: Text(
+          widget.name,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 22,
+            child: IconButton(
+              icon: const Icon(Icons.menu, color: Color.fromARGB(255, 132, 177, 254)),
+              onPressed: () {},
+            ),
+          ),
+          const SizedBox(width: 16),
+        ],
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          // Image et description
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 200,
+                  child: Card(
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: Image.asset(
+                        widget.imagePath,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
                 ),
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'À propos de ${widget.name}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        widget.description,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Section laboratoire
+          LabSection(
+            onTap: _showModal,
+            controller: _controller,
+            scaleAnimation: _scaleAnimation,
+            colorAnimation: _colorAnimation,
+          ),
+          // Paramètres spécifiques à la maladie
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: SingleChildScrollView(
+                child: _buildDiseaseSpecificParameters(),
               ),
             ),
           ),
