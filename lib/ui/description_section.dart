@@ -32,7 +32,7 @@ class DescriptionSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'À propos de ${diseaseInfo['name']}',
+              'About ${diseaseInfo['name']}',
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -49,15 +49,15 @@ class DescriptionSection extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             if (diseaseInfo['symptoms'] != null) ...[
-              _buildInfoSection('Symptômes courants', diseaseInfo['symptoms']!),
+              _buildInfoSection('Common Symptoms', diseaseInfo['symptoms']!),
               const SizedBox(height: 12),
             ],
             if (diseaseInfo['prevention'] != null) ...[
-              _buildInfoSection('Prévention', diseaseInfo['prevention']!),
+              _buildInfoSection('Prevention', diseaseInfo['prevention']!),
               const SizedBox(height: 12),
             ],
             if (diseaseInfo['treatment'] != null) ...[
-              _buildInfoSection('Traitement', diseaseInfo['treatment']!),
+              _buildInfoSection('Treatment', diseaseInfo['treatment']!),
             ],
           ],
         ),
@@ -92,37 +92,35 @@ class DescriptionSection extends StatelessWidget {
 
   Map<String, String> _getDiseaseInfo(String diseaseName) {
     switch (diseaseName.toLowerCase()) {
-      case 'diabete':
+      case 'diabetes':
         return {
-          'name': 'Diabète',
-          'description': 'Le diabète est une maladie chronique caractérisée par un excès '
-              'de sucre dans le sang (hyperglycémie). Il existe principalement deux types : '
-              'le diabète de type 1 (insulinodépendant) et le diabète de type 2.',
-          'symptoms': '• Soif intense\n• Urines abondantes\n• Fatigue anormale\n'
-              '• Faim excessive\n• Cicatrisation lente\n• Infections fréquentes',
-          'prevention': '• Alimentation équilibrée\n• Activité physique régulière\n'
-              '• Contrôle du poids\n• Surveillance glycémique après 40 ans',
-          'treatment': '• Régime alimentaire adapté\n• Activité physique\n'
-              '• Antidiabétiques oraux ou insuline\n• Surveillance régulière',
+          'name': 'Diabetes',
+          'description': 'Diabetes is a chronic disease characterized by high blood sugar levels (hyperglycemia). '
+              'There are two main types: type 1 diabetes (insulin-dependent) and type 2 diabetes.',
+          'symptoms': '• Excessive thirst\n• Frequent urination\n• Unexplained fatigue\n'
+              '• Increased hunger\n• Slow wound healing\n• Recurrent infections',
+          'prevention': '• Balanced diet\n• Regular physical activity\n'
+              '• Weight management\n• Blood sugar monitoring after age 40',
+          'treatment': '• Dietary management\n• Physical exercise\n'
+              '• Oral antidiabetics or insulin\n• Regular monitoring',
         };
       case 'hypertension':
         return {
           'name': 'Hypertension',
-          'description': 'L\'hypertension artérielle (HTA) est une pathologie cardiovasculaire '
-              'définie par une pression artérielle trop élevée. Elle est un facteur de risque majeur '
-              'pour les accidents vasculaires cérébraux et les infarctus.',
-          'symptoms': '• Maux de tête\n• Vertiges\n• Bourdonnements d\'oreilles\n'
-              '• Troubles visuels\n• Saignements de nez\n• Essoufflement',
-          'prevention': '• Réduction de la consommation de sel\n• Activité physique régulière\n'
-              '• Limitation de l\'alcool\n• Arrêt du tabac\n• Gestion du stress',
-          'treatment': '• Médicaments antihypertenseurs\n• Régime pauvre en sel\n'
-              '• Surveillance tensionnelle\n• Traitement des facteurs de risque associés',
+          'description': 'Hypertension (high blood pressure) is a cardiovascular condition defined by abnormally '
+              'high blood pressure. It is a major risk factor for strokes and heart attacks.',
+          'symptoms': '• Headaches\n• Dizziness\n• Tinnitus (ringing in ears)\n'
+              '• Vision problems\n• Nosebleeds\n• Shortness of breath',
+          'prevention': '• Reduced salt intake\n• Regular exercise\n'
+              '• Limited alcohol consumption\n• Smoking cessation\n• Stress management',
+          'treatment': '• Antihypertensive medications\n• Low-sodium diet\n'
+              '• Blood pressure monitoring\n• Management of associated risk factors',
         };
       default:
         return {
           'name': diseaseName,
-          'description': 'Description générale de la maladie. Consultez un professionnel '
-              'de santé pour des informations spécifiques à votre cas.',
+          'description': 'General disease description. Please consult a healthcare professional '
+              'for information specific to your case.',
         };
     }
   }

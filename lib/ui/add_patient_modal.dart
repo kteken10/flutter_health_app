@@ -37,9 +37,9 @@ class _AddPatientModalState extends State<AddPatientModal> {
     try {
       final emailService = EmailService(
         smtpServer: 'smtp.gmail.com',
-        smtpUsername: 'votreemail@gmail.com',
-        smtpPassword: 'votremotdepasse',
-        senderEmail: 'no-reply@votreclinique.com',
+        smtpUsername: 'tchokoutef@gmail.com',
+        smtpPassword: 'wqex wwni azjo fqnw',
+        senderEmail: 'tchokoutef@gmail.com',
         senderName: 'Clinique Médicale AI',
       );
 

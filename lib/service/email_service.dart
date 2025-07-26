@@ -14,8 +14,8 @@ class EmailService {
     required String smtpUsername,
     required String smtpPassword,
     int smtpPort = 587,
-    String senderEmail = 'no-reply@votreclinique.com',
-    String senderName = 'Clinique Médicale AI',
+    String senderEmail = 'tchokoutef@gmail.com',
+    String senderName = 'AI Medical Clinic',
   })  : _smtpServer = smtpServer,
         _smtpUsername = smtpUsername,
         _smtpPassword = smtpPassword,
@@ -42,7 +42,7 @@ class EmailService {
       final message = Message()
         ..from = Address(_senderEmail, _senderName)
         ..recipients.add(recipientEmail)
-        ..subject = 'Bienvenue à la Clinique Médicale AI'
+        ..subject = 'Welcome to AI Tchokoute Medical Clinic'
         ..html = _buildWelcomeEmailHtml(
           patientName: patientName,
           patientId: patientId,
@@ -51,7 +51,7 @@ class EmailService {
 
       await send(message, smtpServer);
     } catch (e) {
-      print('Erreur lors de l\'envoi de l\'email: $e');
+      print('Error sending email: $e');
       rethrow;
     }
   }
@@ -110,27 +110,27 @@ class EmailService {
       <body>
         <div class="container">
           <div class="header">
-            <h2>Clinique Médicale AI</h2>
+            <h2>AI Medical Clinic</h2>
           </div>
           
-          <h3>Bonjour $patientName,</h3>
-          <p>Votre dossier médical a été <strong>créé avec succès</strong> dans notre système.</p>
+          <h3>Hello $patientName,</h3>
+          <p>Your medical record has been <strong>successfully created</strong> in our system.</p>
 
-          <h3>📋 Vos informations médicales :</h3>
+          <h3>📋 Your Medical Information:</h3>
           <ul>
-            <li><strong>Nom complet :</strong> $patientName</li>
-            <li><strong>ID Patient :</strong> $patientId</li>
-            <li><strong>Médecin traitant :</strong> Dr. $doctorName</li>
+            <li><strong>Full Name:</strong> $patientName</li>
+            <li><strong>Patient ID:</strong> $patientId</li>
+            <li><strong>Primary Physician:</strong> Dr. $doctorName</li>
           </ul>
 
           <p style="margin-top: 20px;">
-            🏥 <em>Vous pouvez maintenant accéder à votre espace patient pour suivre vos rendez-vous et résultats d'analyses.</em>
+            🏥 <em>You can now access your patient portal to track appointments and test results.</em>
           </p>
 
           <div class="footer">
-            Cordialement,<br/>
-            L'équipe médicale<br/>
-            Clinique Médicale AI
+            Sincerely,<br/>
+            The Medical Team<br/>
+            AI Medical Clinic
           </div>
         </div>
       </body>

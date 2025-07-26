@@ -135,46 +135,46 @@ class _DiseaseDetailScreenState extends State<DiseaseDetailScreen>
   Widget _buildHypertensionParameters() {
     return const Column(
       children: [
-        ParameterWidget(
-          icon: FontAwesomeIcons.heartPulse,
-          parameterName: 'Pression artérielle systolique',
-          unit: 'mm Hg',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.heartPulse,
-          parameterName: 'Pression artérielle diastolique',
-          unit: 'mm Hg',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.weightScale,
-          parameterName: 'IMC',
-          unit: 'kg/m²',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.drumstickBite,
-          parameterName: 'Cholestérol total',
-          unit: 'mg/dL',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.wineBottle,
-          parameterName: 'Consommation d\'alcool',
-          unit: 'verres/semaine',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.smoking,
-          parameterName: 'Tabagisme',
-          unit: 'paquets/année',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.running,
-          parameterName: 'Activité physique',
-          unit: 'heures/semaine',
-        ),
-        ParameterWidget(
-          icon: FontAwesomeIcons.cakeCandles,
-          parameterName: 'Âge',
-          unit: 'ans',
-        ),
+       ParameterWidget(
+  icon: FontAwesomeIcons.heartPulse,
+  parameterName: 'Systolic Blood Pressure',
+  unit: 'mm Hg',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.heartPulse,
+  parameterName: 'Diastolic Blood Pressure',
+  unit: 'mm Hg',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.weightScale,
+  parameterName: 'BMI',
+  unit: 'kg/m²',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.drumstickBite,
+  parameterName: 'Total Cholesterol',
+  unit: 'mg/dL',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.wineBottle,
+  parameterName: 'Alcohol Consumption',
+  unit: 'drinks/week',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.smoking,
+  parameterName: 'Smoking',
+  unit: 'packs/year',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.running,
+  parameterName: 'Physical Activity',
+  unit: 'hours/week',
+),
+ParameterWidget(
+  icon: FontAwesomeIcons.cakeCandles,
+  parameterName: 'Age',
+  unit: 'years',
+),
       ],
     );
   }
